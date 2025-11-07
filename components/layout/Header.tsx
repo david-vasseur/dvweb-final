@@ -28,6 +28,7 @@ function Header() {
     if (!subtitleRef.current) return;
 
     const updateSubtitle = () => {
+        if (!subtitleRef.current) return;
         // Choisir un ordre aléatoire des mots clés
         const randomWords = [...wordsKey].sort(() => Math.random() - 0.5);
         const randomEnd = phraseEnds[Math.floor(Math.random() * phraseEnds.length)];
