@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { useRef } from 'react'
 import { Button } from '../ui/Button';
 import ScrollLink from '../feature/ScrollLink';
+import { SplitText } from 'gsap/SplitText';
 
 function Header() {
 
@@ -15,7 +16,54 @@ function Header() {
     const subtitleRef = useRef(null);
     const ctaRef = useRef(null);
 
+    const wordsKey = ["inspirer", "captiver", "séduire"];
+    const phraseEnds = [
+        "vos clients dès le premier clic.",
+        "vos clients à chaque visite.",
+        "vos clients de façon mémorable."
+    ];
+
     useGSAP(() => {
+
+    if (!subtitleRef.current) return;
+
+    const updateSubtitle = () => {
+        // Choisir un ordre aléatoire des mots clés
+        const randomWords = [...wordsKey].sort(() => Math.random() - 0.5);
+        const randomEnd = phraseEnds[Math.floor(Math.random() * phraseEnds.length)];
+
+        subtitleRef.current.innerHTML = `Avec nous, vous construisez un site web pour ${randomWords.join(" ")} ${randomEnd}`;
+
+        // Split en mots pour animation
+        const split = new SplitText(subtitleRef.current, { type: "words" });
+
+        split.words.forEach((word) => {
+            const wrapper = document.createElement("span");
+            wrapper.style.display = "inline-block";
+            wrapper.style.overflow = "hidden";
+            wrapper.style.verticalAlign = "top";
+            word.parentNode?.insertBefore(wrapper, word);
+            wrapper.appendChild(word);
+        });
+
+        gsap.from(split.words, {
+            y: (i) => (i % 2 === 0 ? -100 : 100),
+            rotationX: (i) => (i % 2 === 0 ? -90 : 90),
+            opacity: 0,
+            stagger: 0.05,
+            duration: 1.2,
+            ease: "back.out(1.7)",
+        });
+    };
+
+    // Lancer la première fois
+    updateSubtitle();
+
+    // Changer toutes les 5 secondes
+    const interval = setInterval(updateSubtitle, 5000);
+
+    
+
         const tl = gsap.timeline({ 
             defaults: { ease: 'power3.out' },
             // Ajoute clearProps pour nettoyer après l'animation
@@ -42,6 +90,8 @@ function Header() {
             opacity: 0,
             duration: 0.8,
         }, '-=0.4');
+
+        return () => clearInterval(interval);
     }, { scope: heroRef });
 
     return (
@@ -66,14 +116,12 @@ function Header() {
                     ref={subtitleRef}
                     className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed"
                 >
-                    Nous transformons vos idées en applications web exceptionnelles
-                    avec Next.js, React Three Fiber et des animations immersives
                 </p>
 
                 <div ref={ctaRef} className="flex flex-col sm:flex-row gap-4 justify-center">
                     <Button
                         size="lg"
-                        className="bg-linear-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white px-8 py-6 text-lg group"
+                        className="bg-linear-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white px-8 py-6 text-lg group cursor-pointer"
                     >
                         Démarrer un projet
                         <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />

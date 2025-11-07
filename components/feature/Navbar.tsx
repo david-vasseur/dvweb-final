@@ -122,8 +122,9 @@ function Navbar() {
                                 animate={{ opacity: 1 }}
                                 transition={{ duration: 0.2, delay: 0.5, ease: "easeInOut" }}
                             >
-                                {["Acceuil", "Services", "Portfolio", "Contact"].map((item, index) => (
+                                {["Accueil", "Services", "Portfolio", "Contact", "FAQ", "Se Connecter"].map((item, index) => (
                                 <motion.li 
+                                    className={`${item === "Se Connecter" && "mt-15"}`}
                                     key={index}
                                     initial={{ opacity: 0, translateY: 100 }}
                                     animate={{ opacity: 1, translateY: 0 }}
@@ -164,7 +165,7 @@ function Navbar() {
                         <Link
                             href="/"
                             className="relative -translate-y-4 text-zinc-100 hover:text-zinc-400 transition-colors duration-200
-                                        after:absolute after:left-0 after:-bottom-1 after:w-full after:h-1.5 after:bg-linear-to-r after:from-cyan-400 after:via-blue-400 after:to-cyan-300
+                                        after:absolute after:left-0 after:-bottom-1 after:w-full after:h-1 after:bg-linear-to-r after:from-cyan-400 after:via-blue-400 after:to-cyan-300
                                         after:scale-x-0 after:origin-left hover:after:scale-x-100
                                         after:transition-transform after:duration-300 after:block"
                             >
@@ -174,7 +175,7 @@ function Navbar() {
                         <Link
                             href="/bougies-parfumees"
                             className="relative -translate-y-4 text-zinc-100 hover:text-zinc-400 transition-colors duration-200
-                                        after:absolute after:left-0 after:-bottom-1 after:w-full after:h-1.5 after:bg-linear-to-r after:from-cyan-400 after:via-blue-400 after:to-cyan-300
+                                        after:absolute after:left-0 after:-bottom-1 after:w-full after:h-1 after:bg-linear-to-r after:from-cyan-400 after:via-blue-400 after:to-cyan-300
                                         after:scale-x-0 after:origin-left hover:after:scale-x-100
                                         after:transition-transform after:duration-300 after:block"
                         >
@@ -183,7 +184,7 @@ function Navbar() {
                         <Link
                             href="#"
                             className="relative -translate-y-4 text-zinc-100 hover:text-zinc-400 transition-colors duration-200
-                                            after:absolute after:left-0 after:-bottom-1 after:w-full after:h-1.5 after:bg-linear-to-r after:from-cyan-400 after:via-blue-400 after:to-cyan-300
+                                            after:absolute after:left-0 after:-bottom-1 after:w-full after:h-1 after:bg-linear-to-r after:from-cyan-400 after:via-blue-400 after:to-cyan-300
                                             after:scale-x-0 after:origin-left hover:after:scale-x-100
                                             after:transition-transform after:duration-300 after:block"
                         >
@@ -192,12 +193,30 @@ function Navbar() {
                         <Link
                             href="#"
                             className="relative -translate-y-4 text-zinc-100 hover:text-zinc-400 transition-colors duration-200
-                                            after:absolute after:left-0 after:-bottom-1 after:w-full after:h-1.5 after:bg-linear-to-r after:from-cyan-400 after:via-blue-400 after:to-cyan-300
+                                            after:absolute after:left-0 after:-bottom-1 after:w-full after:h-1 after:bg-linear-to-r after:from-cyan-400 after:via-blue-400 after:to-cyan-300
                                             after:scale-x-0 after:origin-left hover:after:scale-x-100
                                             after:transition-transform after:duration-300 after:block"
                         >
                             Contact
                         </Link>
+                        <Link
+                            href="#"
+                            className="relative -translate-y-4 text-zinc-100 hover:text-zinc-400 transition-colors duration-200
+                                            after:absolute after:left-0 after:-bottom-1 after:w-full after:h-1 after:bg-linear-to-r after:from-cyan-400 after:via-blue-400 after:to-cyan-300
+                                            after:scale-x-0 after:origin-left hover:after:scale-x-100
+                                            after:transition-transform after:duration-300 after:block"
+                        >
+                            FAQ
+                        </Link>
+                        <button
+                            className="relative -translate-y-4 text-zinc-100 hover:text-zinc-400 transition-colors cursor-pointer duration-200
+                                            after:absolute after:left-0 after:-bottom-1 after:w-full after:h-1 after:bg-linear-to-r after:from-cyan-400 after:via-blue-400 after:to-cyan-300
+                                            after:scale-x-0 after:origin-left hover:after:scale-x-100
+                                            after:transition-transform after:duration-300 after:block"
+                        >
+                            Se Connecter
+                        </button>
+
 
                         {/* Label "Menu" visible quand replié */}
                         <span
