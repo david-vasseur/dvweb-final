@@ -47,7 +47,7 @@ function Header() {
     return (
         <header
             ref={heroRef}
-            className="h-screen flex pb-10 lg:pb-0 items-end lg:items-center justify-center relative overflow-hidden px-6"
+            className="h-svh flex pb-10 lg:pb-0 items-end lg:items-center justify-center relative overflow-hidden px-6"
         >
             
             <div className="absolute inset-0 bg-linear-to-br from-cyan-500/5 via-blue-500/5 to-transparent pointer-events-none" />
