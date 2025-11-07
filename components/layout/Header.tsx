@@ -13,7 +13,7 @@ function Header() {
 
     const heroRef = useRef(null);
     const titleRef = useRef(null);
-    const subtitleRef = useRef(null);
+    const subtitleRef = useRef<HTMLParagraphElement>(null);
     const ctaRef = useRef(null);
 
     const wordsKey = ["inspirer", "captiver", "séduire"];
