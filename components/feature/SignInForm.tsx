@@ -7,12 +7,18 @@ import { ISignIn, SignInSchema } from '@/schema/signInSchema';
 import { useSignIn } from '@clerk/nextjs';
 import { useRouter } from 'next/navigation';
 import { useModalStore } from '@/app/lib/store/modalStore';
+import { useRef } from 'react';
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
 
 export const SignInForm = () => {
 
     const { openModal } = useModalStore();
     const { signIn } = useSignIn();
     const router = useRouter();
+    const fied1Ref = useRef(null);
+    const fied2Ref = useRef(null);
+    const buttonRef = useRef(null);
 
     const form = useForm({
         defaultValues: {
@@ -47,8 +53,31 @@ export const SignInForm = () => {
                 }
             }
         },
-    })
+    });
 
+    useGSAP(() => {
+        const tl = gsap.timeline({ 
+            defaults: { ease: 'power3.out' },
+            onComplete: () => {
+                gsap.set([fied1Ref.current, fied2Ref.current, buttonRef.current], {
+                    clearProps: 'all'
+                });
+            }
+        }); 
+        
+        tl.fromTo(fied1Ref.current, 
+            {y: 50, opacity: 0}, 
+            {y: 1, opacity: 1, duration: .3, delay: .5}
+        )
+        .fromTo(fied2Ref.current, 
+            {y: 50, opacity: 0}, 
+            {y: 1, opacity: 1, duration: .3}
+        )
+        .fromTo(buttonRef.current,
+            {y: 30, opacity: 0}, 
+            {y: 1, opacity: 1, duration: .05}
+        )
+    })
 
     return (
         <form 
@@ -63,10 +92,7 @@ export const SignInForm = () => {
                 name="userName">
                 {({ state, handleBlur, handleChange }) => (
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.7 + 1 * 0.1, duration: 0.4 }}
+                        ref={fied1Ref}
                     >
                         <label className="sr-only">Nom d&apos;utilisateur</label>
                         <input 
@@ -94,10 +120,7 @@ export const SignInForm = () => {
                 name="password">
                 {({ state, handleBlur, handleChange }) => (
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.7 + 1 * 0.1, duration: 0.4 }}
+                    ref={fied2Ref}
                     >
                         <label className="sr-only">Mot de passe</label>
                         <input 
@@ -128,6 +151,7 @@ export const SignInForm = () => {
                     // eslint-disable-next-line react/no-children-prop
                     children={([canSubmit, isSubmitting]) => (
                         <motion.button 
+                            ref={buttonRef}
                             type="submit" 
                             disabled={!canSubmit || isSubmitting}
                             className="inline-flex items-center justify-center space-x-2 rounded-md bg-cyan-400/60 px-6 py-3 font-semibold text-black hover:text-white hover:bg-cyan-700/30 transition cursor-pointer"
