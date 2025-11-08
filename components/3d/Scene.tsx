@@ -4,15 +4,20 @@ import React, { forwardRef, ReactNode } from 'react';
 
 type SceneProps = {
     children?: ReactNode;
+    onReady?: () => void;
 };
 
 const Scene = forwardRef<HTMLDivElement, SceneProps>((props, ref) => {
 
-    const { children } = props;
+    const { children, onReady } = props;
 
     return (
         <div className="absolute w-full h-full">
             <Canvas
+                onCreated={() => {
+                    console.log("Canvas created");
+                    if (onReady) onReady();
+                }}
                 camera={{ position: [0, 20, 0], fov: 35 }}
             >
                 <Environment 

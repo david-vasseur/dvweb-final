@@ -4,12 +4,13 @@ import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { Button } from '../ui/Button';
 import ScrollLink from '../feature/ScrollLink';
 import { SplitText } from 'gsap/SplitText';
 import Scene from '../3d/Scene';
 import { Logo } from '../3d/Logo';
+import * as THREE from "three";
 
 function Header() {
 
@@ -17,6 +18,7 @@ function Header() {
     const titleRef = useRef(null);
     const subtitleRef = useRef<HTMLParagraphElement>(null);
     const ctaRef = useRef(null);
+    const logoRef = useRef<THREE.Group>(null);
 
     const wordsKey = ["inspirer", "captiver", "séduire"];
     const phraseEnds = [
@@ -25,47 +27,69 @@ function Header() {
         "vos clients de façon mémorable."
     ];
 
-    useGSAP(() => {
+    useEffect(() => {
+        console.log("Logo mounted, ref:", logoRef);
+    }, [logoRef]);
 
-    if (!subtitleRef.current) return;
+    const handleSceneReady = () => {
+        const waitForLogo = () => {
+            if (!logoRef.current) {
+            requestAnimationFrame(waitForLogo);
+            return;
+            }
 
-    const updateSubtitle = () => {
-        if (!subtitleRef.current) return;
-        // Choisir un ordre aléatoire des mots clés
-        const randomWords = [...wordsKey].sort(() => Math.random() - 0.5);
-        const randomEnd = phraseEnds[Math.floor(Math.random() * phraseEnds.length)];
+            gsap.to(logoRef.current.scale, {
+            x: 1,
+            y: 1,
+            z: 1,
+            duration: 1.5,
+            ease: "power3.out",
+            });
+        };
 
-        subtitleRef.current.innerHTML = `Avec nous, vous construisez un site web pour ${randomWords.join(" ")} ${randomEnd}`;
-
-        // Split en mots pour animation
-        const split = new SplitText(subtitleRef.current, { type: "words" });
-
-        split.words.forEach((word) => {
-            const wrapper = document.createElement("span");
-            wrapper.style.display = "inline-block";
-            wrapper.style.overflow = "hidden";
-            wrapper.style.verticalAlign = "top";
-            word.parentNode?.insertBefore(wrapper, word);
-            wrapper.appendChild(word);
-        });
-
-        gsap.from(split.words, {
-            y: (i) => (i % 2 === 0 ? -100 : 100),
-            rotationX: (i) => (i % 2 === 0 ? -90 : 90),
-            opacity: 0,
-            stagger: 0.05,
-            duration: 1.2,
-            ease: "back.out(1.7)",
-        });
+        waitForLogo();
     };
 
-    // Lancer la première fois
-    updateSubtitle();
 
-    // Changer toutes les 5 secondes
-    const interval = setInterval(updateSubtitle, 5000);
+    useGSAP(() => {
 
-    
+        if (!subtitleRef.current) return;
+
+        const updateSubtitle = () => {
+            if (!subtitleRef.current) return;
+            // Choisir un ordre aléatoire des mots clés
+            const randomWords = [...wordsKey].sort(() => Math.random() - 0.5);
+            const randomEnd = phraseEnds[Math.floor(Math.random() * phraseEnds.length)];
+
+            subtitleRef.current.innerHTML = `Avec nous, vous construisez un site web pour ${randomWords.join(" ")} ${randomEnd}`;
+
+            // Split en mots pour animation
+            const split = new SplitText(subtitleRef.current, { type: "words" });
+
+            split.words.forEach((word) => {
+                const wrapper = document.createElement("span");
+                wrapper.style.display = "inline-block";
+                wrapper.style.overflow = "hidden";
+                wrapper.style.verticalAlign = "top";
+                word.parentNode?.insertBefore(wrapper, word);
+                wrapper.appendChild(word);
+            });
+
+            gsap.from(split.words, {
+                y: (i) => (i % 2 === 0 ? -100 : 100),
+                rotationX: (i) => (i % 2 === 0 ? -90 : 90),
+                opacity: 0,
+                stagger: 0.05,
+                duration: 1.2,
+                ease: "back.out(1.7)",
+            });
+        };
+
+        // Lancer la première fois
+        updateSubtitle();
+
+        // Changer toutes les 5 secondes
+        const interval = setInterval(updateSubtitle, 5000);
 
         const tl = gsap.timeline({ 
             defaults: { ease: 'power3.out' },
@@ -81,7 +105,7 @@ function Header() {
             y: 100,
             opacity: 0,
             duration: 1.2,
-            delay: 0.3,
+            delay: 0.6,
         })
         .from(subtitleRef.current, {
             y: 50,
@@ -102,8 +126,8 @@ function Header() {
             ref={heroRef}
             className="h-svh flex pb-10 lg:pb-0 items-end lg:items-center justify-center relative overflow-hidden px-6"
         >
-            <Scene>
-                <Logo />
+            <Scene onReady={handleSceneReady}>
+                <Logo ref={logoRef} />
             </Scene>
             
             <div className="absolute inset-0 bg-linear-to-br from-cyan-500/5 via-blue-500/5 to-transparent pointer-events-none" />
