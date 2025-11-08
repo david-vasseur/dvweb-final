@@ -8,6 +8,8 @@ import { useRef } from 'react'
 import { Button } from '../ui/Button';
 import ScrollLink from '../feature/ScrollLink';
 import { SplitText } from 'gsap/SplitText';
+import Scene from '../3d/Scene';
+import { Logo } from '../3d/Logo';
 
 function Header() {
 
@@ -100,13 +102,16 @@ function Header() {
             ref={heroRef}
             className="h-svh flex pb-10 lg:pb-0 items-end lg:items-center justify-center relative overflow-hidden px-6"
         >
+            <Scene>
+                <Logo />
+            </Scene>
             
             <div className="absolute inset-0 bg-linear-to-br from-cyan-500/5 via-blue-500/5 to-transparent pointer-events-none" />
 
             <div className="max-w-6xl mx-auto text-center relative z-10">
                 <h1
                     ref={titleRef}
-                    className="text-6xl md:text-8xl font-bold mb-6 bg-linear-to-br from-cyan-400/20 via-cyan-200 to-cyan-500 bg-clip-text text-transparent leading-tight bg-animate"
+                    className={`text-6xl md:text-8xl font-black mb-6 bg-linear-to-br from-cyan-400/20 via-cyan-200 to-cyan-500 bg-clip-text text-transparent leading-tight bg-animate`}
                 >
                     Expériences
                     <br />

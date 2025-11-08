@@ -1,19 +1,16 @@
 import type { Metadata } from "next";
-import { Geist_Mono, Zalando_Sans } from "next/font/google";
+import { Archivo, Archivo_Black } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/feature/Navbar";
 import Modal from "@/components/layout/modal/Modal";
 import { ClerkProvider } from "@clerk/nextjs";
 
-const geistMono = Geist_Mono({
-	variable: "--font-geist-mono",
-	subsets: ["latin"],
-});
+const archivo = Archivo({
+	variable: "--font-sans"
+})
 
-const zalandoSans = Zalando_Sans({
-	variable: "--font-zalando-sans",
-	subsets: ["latin"],
-	weight: ["400", "600", "700", "900"]
+const archivo_black = Archivo_Black({
+	weight: ["400"]
 })
 
 export const metadata: Metadata = {
@@ -31,7 +28,7 @@ export default function RootLayout({
 		<ClerkProvider>
 			<html lang="fr">
 				<body
-					className={`${zalandoSans.variable} ${geistMono.variable} antialiased`}
+					className={`${archivo.className} antialiased`}
 				>
 					<Navbar />
 					{children}
