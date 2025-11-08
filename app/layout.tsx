@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist_Mono, Zalando_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/feature/Navbar";
+import Modal from "@/components/layout/modal/Modal";
+import { ClerkProvider } from "@clerk/nextjs";
 
 const geistMono = Geist_Mono({
 	variable: "--font-geist-mono",
@@ -26,13 +28,16 @@ export default function RootLayout({
   	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="fr">
-			<body
-				className={`${zalandoSans.variable} ${geistMono.variable} antialiased`}
-			>
-				<Navbar />
-				{children}
-			</body>
-		</html>
+		<ClerkProvider>
+			<html lang="fr">
+				<body
+					className={`${zalandoSans.variable} ${geistMono.variable} antialiased`}
+				>
+					<Navbar />
+					{children}
+					<Modal />
+				</body>
+			</html>
+		</ClerkProvider>
 	);
 }

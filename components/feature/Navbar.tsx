@@ -9,12 +9,15 @@ import Link from "next/link";
 import { useRef, useState } from "react";
 import { motion } from "motion/react";
 import { MenuIcon, X } from "lucide-react";
+import { useModalStore } from "@/app/lib/store/modalStore";
+import { SignInForm } from "./SignInForm";
 
 function Navbar() {
     const [hovered, setHovered] = useState(false);
     const navRef = useRef<HTMLDivElement | null>(null);
     const { isMobile } = useDeviceStore();
-    const [isOpen, setIsOpen] = useState<boolean>(false);
+    const { openModal, isOpen } = useModalStore();
+    const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 	const NUM_BANDS = 4;
 	const bands = Array.from({ length: NUM_BANDS });
     
@@ -62,9 +65,9 @@ function Navbar() {
                     <div>
                         <Image src={"/logo.png"} width={50} height={500} alt="logo" />
                     </div>
-                    <div onClick={() => setIsOpen(!isOpen)}>
+                    <div onClick={() => setIsMenuOpen(!isMenuOpen)}>
                         <AnimatePresence mode="wait">
-                        {isOpen ? (
+                        {isMenuOpen ? (
                             <motion.div
                                 key="close"
                                 initial={{ opacity: 0, rotate: -90 }}
@@ -89,7 +92,7 @@ function Navbar() {
                     </div>			
                 </div>
                 <AnimatePresence mode="wait">
-                    {isOpen && (
+                    {isMenuOpen && (
                     <>			
                         <motion.div 
                             key="overlay"
@@ -125,13 +128,14 @@ function Navbar() {
                                 {["Accueil", "Services", "Portfolio", "Contact", "FAQ", "Se Connecter"].map((item, index) => (
                                 <motion.li 
                                     className={`${item === "Se Connecter" && "mt-15"}`}
+                                    onClick={item === "Se Connecter" ? () => openModal(<SignInForm />) : undefined}
                                     key={index}
                                     initial={{ opacity: 0, translateY: 100 }}
                                     animate={{ opacity: 1, translateY: 0 }}
                                     exit={{ opacity: 0, translateY: 100, transition: { duration: 0.2 } }} // sans delay ici
                                     transition={{
                                     duration: 0.2,
-                                    delay: isOpen ? 0.3 + index * 0.2 : 0, // delay seulement à l'ouverture
+                                    delay: isMenuOpen ? 0.3 + index * 0.2 : 0, // delay seulement à l'ouverture
                                     ease: "easeInOut",
                                     }}
                                 >
@@ -209,6 +213,7 @@ function Navbar() {
                             FAQ
                         </Link>
                         <button
+                            onClick={() => openModal(<SignInForm />)}
                             className="relative -translate-y-4 text-zinc-100 hover:text-zinc-400 transition-colors cursor-pointer duration-200
                                             after:absolute after:left-0 after:-bottom-1 after:w-full after:h-1 after:bg-linear-to-r after:from-cyan-400 after:via-blue-400 after:to-cyan-300
                                             after:scale-x-0 after:origin-left hover:after:scale-x-100
