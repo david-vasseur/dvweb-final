@@ -17,7 +17,7 @@ function Header() {
     const heroRef = useRef(null);
     const titleRef = useRef(null);
     const subtitleRef = useRef<HTMLParagraphElement>(null);
-    const ctaRef = useRef(null);
+    const ctaRef = useRef<HTMLDivElement>(null);
     const logoRef = useRef<THREE.Group>(null);
 
     const wordsKey = ["inspirer", "captiver", "séduire"];
@@ -101,6 +101,8 @@ function Header() {
             }
         });
 
+        if (!titleRef.current || !subtitleRef.current || !ctaRef.current) return
+
         tl.from(titleRef.current, {
             y: 100,
             opacity: 0,
@@ -112,10 +114,11 @@ function Header() {
             opacity: 0,
             duration: 1,
         }, '-=0.6')
-        .from(ctaRef.current, {
+        .from(ctaRef.current.children, {
             y: 30,
             opacity: 0,
             duration: 0.8,
+            stagger: 0.2
         }, '-=0.4');
 
         return () => clearInterval(interval);
@@ -124,7 +127,7 @@ function Header() {
     return (
         <header
             ref={heroRef}
-            className="h-svh flex pb-10 lg:pb-0 items-end lg:items-center justify-center relative overflow-hidden px-6"
+            className="h-svh w-svw flex pb-10 lg:pb-0 items-end lg:items-center justify-center relative overflow-hidden px-6"
         >
             <Scene onReady={handleSceneReady}>
                 <Logo ref={logoRef} />
@@ -135,7 +138,7 @@ function Header() {
             <div className="max-w-6xl mx-auto text-center relative z-10">
                 <h1
                     ref={titleRef}
-                    className={`text-6xl md:text-8xl font-black mb-6 bg-linear-to-br from-cyan-400/20 via-cyan-200 to-cyan-500 bg-clip-text text-transparent leading-tight bg-animate`}
+                    className={`text-[3rem] md:text-8xl font-black mb-6 bg-linear-to-br from-cyan-400/20 via-cyan-200 to-cyan-500 bg-clip-text text-transparent leading-tight bg-animate`}
                 >
                     Expériences
                     <br />
@@ -144,7 +147,7 @@ function Header() {
 
                 <p
                     ref={subtitleRef}
-                    className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed"
+                    className="text-[1.1rem] md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed"
                 >
                 </p>
 
