@@ -18,7 +18,7 @@ const Scene = forwardRef<HTMLDivElement, SceneProps>((props, ref) => {
                     console.log("Canvas created");
                     if (onReady) onReady();
                 }}
-                camera={{ position: [0, 20, 0], fov: 35 }}
+                camera={{ position: [0, 20, 1], fov: 35 }}
             >
                 <Environment 
                     files={'/models/neon_photostudio_2k.hdr'}

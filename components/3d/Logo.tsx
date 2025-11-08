@@ -15,7 +15,7 @@ export const Logo = forwardRef<THREE.Group, JSX.IntrinsicElements["group"]>((pro
             floatIntensity={1.5}       // amplitude du mouvement
             floatingRange={[-0.3, 0.3]}
         >
-            <group ref={ref} position={[0, 1, -2]} rotation={[0, 0, 0]} scale={0} >
+            <group ref={ref} position={[0, 1, -1]} rotation={[0, 0, 0]} scale={0} >
                 <primitive object={scene} />
             </group>            
         </Float>
