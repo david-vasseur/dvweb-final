@@ -11,7 +11,6 @@ import { SplitText } from 'gsap/SplitText';
 import Scene from '../3d/Scene';
 import { Logo } from '../3d/Logo';
 import * as THREE from "three";
-import { ShaderBackground } from '../ui/ShaderBackground';
 
 function Header() {
 
@@ -130,7 +129,6 @@ function Header() {
             ref={heroRef}
             className="h-svh w-svw flex pb-10 lg:pb-30 items-end  justify-center relative overflow-hidden px-6"
         >
-            <ShaderBackground />
             <Scene onReady={handleSceneReady}>
                 <Logo ref={logoRef} />
             </Scene>
