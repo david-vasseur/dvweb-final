@@ -27,33 +27,79 @@ function Header() {
         "vos clients de façon mémorable."
     ];
 
-    useEffect(() => {
-        console.log("Logo mounted, ref:", logoRef);
-    }, [logoRef]);
-
+    // fonction pour lancer l'animation du logo une fois le canvas chargé
     const handleSceneReady = () => {
         const waitForLogo = () => {
             if (!logoRef.current) {
-            requestAnimationFrame(waitForLogo);
-            return;
+                requestAnimationFrame(waitForLogo);
+                return;
             }
 
             gsap.to(logoRef.current.scale, {
-            x: 1,
-            y: 1,
-            z: 1,
-            duration: 1.5,
-            ease: "power3.out",
+                x: 1,
+                y: 1,
+                z: 1,
+                duration: 1.5,
+                ease: "power3.out",
+                onComplete: () => {
+                // Quand le logo est prêt → lancer le reste
+                startHeroAnimation();
+            },
             });
         };
 
         waitForLogo();
     };
 
+    // fonction pour lancer l'animation des élements du Hero une fois l'animation du logo terminée
+    const startHeroAnimation = () => {
+        if (!titleRef.current || !subtitleRef.current || !ctaRef.current) return;
+
+        const tl = gsap.timeline({
+            defaults: { ease: "power3.out" },
+            onComplete: () => {
+                gsap.set(
+                    [titleRef.current, subtitleRef.current, ctaRef.current],
+                    { clearProps: "all" }
+                );
+            },
+        });
+
+        tl.to(titleRef.current, {
+            y: 0,
+            opacity: 1,
+            duration: 1.2,
+        })
+        .to(
+            subtitleRef.current,
+            {
+                y: 0,
+                opacity: 1,
+                duration: 1,
+            },
+            "-=0.6"
+        )
+        .to(
+            ctaRef.current.children,
+            {
+                y: 0,
+                opacity: 1,
+                duration: 0.8,
+                stagger: 0.2,
+            },
+            "-=0.4"
+        );
+    };
+
+
 
     useGSAP(() => {
 
-        if (!subtitleRef.current) return;
+        if (!subtitleRef.current || !ctaRef.current || !titleRef.current) return;
+
+        gsap.set(titleRef.current, { opacity: 0, y: 100 });
+        gsap.set(subtitleRef.current, { opacity: 0, y: 50 });
+        gsap.set(ctaRef.current, { opacity: 0, y: 30 });
 
         const updateSubtitle = () => {
             if (!subtitleRef.current) return;
@@ -91,35 +137,35 @@ function Header() {
         // Changer toutes les 5 secondes
         const interval = setInterval(updateSubtitle, 5000);
 
-        const tl = gsap.timeline({ 
-            defaults: { ease: 'power3.out' },
-            // Ajoute clearProps pour nettoyer après l'animation
-            onComplete: () => {
-                gsap.set([titleRef.current, subtitleRef.current, ctaRef.current], {
-                    clearProps: 'all'
-                });
-            }
-        });
+        // const tl = gsap.timeline({ 
+        //     defaults: { ease: 'power3.out' },
+        //     // Ajoute clearProps pour nettoyer après l'animation
+        //     onComplete: () => {
+        //         gsap.set([titleRef.current, subtitleRef.current, ctaRef.current], {
+        //             clearProps: 'all'
+        //         });
+        //     }
+        // });
 
-        if (!titleRef.current || !subtitleRef.current || !ctaRef.current) return
+        // if (!titleRef.current || !subtitleRef.current || !ctaRef.current) return
 
-        tl.from(titleRef.current, {
-            y: 100,
-            opacity: 0,
-            duration: 1.2,
-            delay: 0.6,
-        })
-        .from(subtitleRef.current, {
-            y: 50,
-            opacity: 0,
-            duration: 1,
-        }, '-=0.6')
-        .from(ctaRef.current.children, {
-            y: 30,
-            opacity: 0,
-            duration: 0.8,
-            stagger: 0.2
-        }, '-=0.4');
+        // tl.from(titleRef.current, {
+        //     y: 100,
+        //     opacity: 0,
+        //     duration: 1.2,
+        //     delay: 0.6,
+        // })
+        // .from(subtitleRef.current, {
+        //     y: 50,
+        //     opacity: 0,
+        //     duration: 1,
+        // }, '-=0.6')
+        // .from(ctaRef.current.children, {
+        //     y: 30,
+        //     opacity: 0,
+        //     duration: 0.8,
+        //     stagger: 0.2
+        // }, '-=0.4');
 
         return () => clearInterval(interval);
     }, { scope: heroRef });
