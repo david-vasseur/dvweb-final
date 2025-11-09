@@ -80,7 +80,7 @@ function Header() {
             "-=0.6"
         )
         .to(
-            ctaRef.current.children,
+            Array.from(ctaRef.current.children),
             {
                 y: 0,
                 opacity: 1,
@@ -95,11 +95,11 @@ function Header() {
 
     useGSAP(() => {
 
-        if (!subtitleRef.current || !ctaRef.current || !titleRef.current) return;
+        if (!subtitleRef.current || !ctaRef.current?.children || !titleRef.current) return;
 
         gsap.set(titleRef.current, { opacity: 0, y: 100 });
         gsap.set(subtitleRef.current, { opacity: 0, y: 50 });
-        gsap.set(ctaRef.current, { opacity: 0, y: 30 });
+        gsap.set(ctaRef.current.children, { opacity: 0, y: 30 });
 
         const updateSubtitle = () => {
             if (!subtitleRef.current) return;
