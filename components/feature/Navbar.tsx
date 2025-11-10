@@ -10,7 +10,7 @@ import { useRef, useState } from "react";
 import { motion } from "motion/react";
 import { MenuIcon, X } from "lucide-react";
 import { useModalStore } from "@/app/lib/store/modalStore";
-import { SignInForm } from "./SignInForm";
+import { SignInForm } from "./form/SignInForm";
 
 function Navbar() {
     const [hovered, setHovered] = useState(false);

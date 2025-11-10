@@ -12,6 +12,8 @@ import Scene from '../3d/Scene';
 import { Logo } from '../3d/Logo';
 import * as THREE from "three";
 
+type WordKey = "inspirer" | "captiver" | "séduire";
+
 function Header() {
 
     const heroRef = useRef(null);
@@ -20,7 +22,7 @@ function Header() {
     const ctaRef = useRef<HTMLDivElement>(null);
     const logoRef = useRef<THREE.Group>(null);
 
-    const wordsKey = ["inspirer", "captiver", "séduire"];
+    const wordsKey: WordKey[] = ["inspirer", "captiver", "séduire"];
     const phraseEnds = [
         "vos clients dès le premier clic.",
         "vos clients à chaque visite.",
@@ -69,6 +71,7 @@ function Header() {
             y: 0,
             opacity: 1,
             duration: 1.2,
+            stagger: 0.1
         })
         .to(
             subtitleRef.current,
@@ -101,28 +104,37 @@ function Header() {
         gsap.set(subtitleRef.current, { opacity: 0, y: 50 });
         gsap.set(ctaRef.current.children, { opacity: 0, y: 30 });
 
+        const colors = {
+            inspirer: "#22d3ee",   // cyan
+            captiver: "#3b82f6",   // bleu
+            séduire: "#a855f7",    // violet
+            };
+
         const updateSubtitle = () => {
             if (!subtitleRef.current) return;
-            // Choisir un ordre aléatoire des mots clés
+
+            // Tirage aléatoire
             const randomWords = [...wordsKey].sort(() => Math.random() - 0.5);
             const randomEnd = phraseEnds[Math.floor(Math.random() * phraseEnds.length)];
 
-            subtitleRef.current.innerHTML = `Avec nous, vous construisez un site web pour ${randomWords.join(" ")} ${randomEnd}`;
+            // Appliquer les couleurs à chaque mot
+            const coloredWords = randomWords
+                .map((word) => `<span style="color:${colors[word]}; font-weight:600">${word}</span>`)
+                .join(" ");
 
-            // Split en mots pour animation
-            const split = new SplitText(subtitleRef.current, { type: "words" });
+            // Construire le texte
+            subtitleRef.current.innerHTML = `
+                Ensembles, nous construisons un site web pour 
+                <span class="dynamic-part">${coloredWords} ${randomEnd}</span>
+            `;
 
-            split.words.forEach((word) => {
-                const wrapper = document.createElement("span");
-                wrapper.style.display = "inline-block";
-                wrapper.style.overflow = "hidden";
-                wrapper.style.verticalAlign = "top";
-                word.parentNode?.insertBefore(wrapper, word);
-                wrapper.appendChild(word);
-            });
+            // SplitText sur la partie dynamique uniquement
+            const dynamic = subtitleRef.current.querySelector(".dynamic-part");
+            const split = new SplitText(dynamic, { type: "words" });
 
+            // Animation GSAP
             gsap.from(split.words, {
-                y: (i) => (i % 2 === 0 ? -100 : 100),
+                y: (i) => (i % 2 === 0 ? -80 : 80),
                 rotationX: (i) => (i % 2 === 0 ? -90 : 90),
                 opacity: 0,
                 stagger: 0.05,
@@ -137,49 +149,18 @@ function Header() {
         // Changer toutes les 5 secondes
         const interval = setInterval(updateSubtitle, 5000);
 
-        // const tl = gsap.timeline({ 
-        //     defaults: { ease: 'power3.out' },
-        //     // Ajoute clearProps pour nettoyer après l'animation
-        //     onComplete: () => {
-        //         gsap.set([titleRef.current, subtitleRef.current, ctaRef.current], {
-        //             clearProps: 'all'
-        //         });
-        //     }
-        // });
-
-        // if (!titleRef.current || !subtitleRef.current || !ctaRef.current) return
-
-        // tl.from(titleRef.current, {
-        //     y: 100,
-        //     opacity: 0,
-        //     duration: 1.2,
-        //     delay: 0.6,
-        // })
-        // .from(subtitleRef.current, {
-        //     y: 50,
-        //     opacity: 0,
-        //     duration: 1,
-        // }, '-=0.6')
-        // .from(ctaRef.current.children, {
-        //     y: 30,
-        //     opacity: 0,
-        //     duration: 0.8,
-        //     stagger: 0.2
-        // }, '-=0.4');
-
         return () => clearInterval(interval);
     }, { scope: heroRef });
 
     return (
         <header
             ref={heroRef}
-            className="h-svh w-svw flex pb-10 lg:pb-30 items-end  justify-center relative overflow-hidden px-6"
+            className="h-svh w-svw flex pb-10 lg:pb-30 items-end bg-linear-to-b from-cyan-700 to-cyan-950 justify-center relative overflow-hidden px-6"
         >
+            <div className="absolute inset-0 bg-linear-to-t from-gray-900 via-cyan-500/50 to-cyan-500/5" />
             <Scene onReady={handleSceneReady}>
                 <Logo ref={logoRef} />
-            </Scene>
-            
-            <div className="absolute inset-0 bg-linear-to-br from-cyan-500/5 via-blue-500/5 to-transparent pointer-events-none" />
+            </Scene>         
 
             <div className="max-w-6xl mx-auto text-center relative z-10">
                 <h1
