@@ -165,7 +165,7 @@ function Header() {
             <div className="max-w-6xl mx-auto text-center relative z-10">
                 <h1
                     ref={titleRef}
-                    className={`text-[3rem] md:text-8xl font-black mb-6 bg-linear-to-br from-cyan-400/20 via-cyan-200 to-cyan-500 bg-clip-text text-transparent leading-tight bg-animate`}
+                    className={`text-[3rem] md:text-6xl 2xl:text-8xl font-black mb-6 bg-linear-to-br from-cyan-400/20 via-cyan-200 to-cyan-500 bg-clip-text text-transparent leading-tight bg-animate`}
                 >
                     Expériences
                     <br />

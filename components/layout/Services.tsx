@@ -118,22 +118,22 @@ function Services() {
                     className="relative aspect-3/4 p-8 flex flex-col justify-between backdrop-blur-md drop-shadow-[8px_8px_10px_rgba(0,0,0,0.7)] hover:drop-shadow-[12px_12px_30px_rgba(0,0,0,0.5)] transition-all duration-500"
                 >
                     {/* Title et Bouton absolute */}
-                    <h3 ref={titleCard1Ref} className="absolute top-5 left-1/2 -translate-x-1/2 text-xl lg:text-3xl font-semibold text-white mb-4">Starter</h3>
-                    <button className="-z-2 absolute bottom-8 right-11 px-3 lg:px-5  text-white text-xs lg:text-base py-1 lg:py-2 transition-all duration-300 hover:scale-105 cursor-pointer">
+                    <h3 ref={titleCard1Ref} className="absolute top-5 left-1/2 -translate-x-1/2 text-xl 2xl:text-3xl font-semibold text-white mb-4">Starter</h3>
+                    <button className="-z-2 absolute bottom-8 right-11 2xl:px-5  text-white text-sm 2xl:text-base py-1 lg:py-2 transition-all duration-300 hover:scale-105 cursor-pointer">
                         En savoir plus
                     </button>
                     {/* Card clipped */}
-                    <div className="relative flex flex-col justify-between px-4 lg:px-8 py-4 h-full w-full bg-linear-to-br from-cyan-900 to-cyan-500 overflow-hidden transition-all duration-500 [clip-path:url(#card)]">
+                    <div className="relative flex flex-col justify-between px-4 2xl:px-8 py-4 h-full w-full bg-linear-to-br from-cyan-900 to-cyan-500 overflow-hidden transition-all duration-500 [clip-path:url(#card)]">
                         <div className="absolute w-full h-1/2 top-0 left-0 border-b-10 border-b-gray-900">
                             <Image src={"/images/service1.png"} fill alt="mockup1" />
                         </div>
-                        <p className="text-cyan-100 text-lg leading-relaxed mt-80">
+                        <p className="text-cyan-100 text-lg leading-relaxed mt-60 2xl:mt-80">
                             Un site vitrine professionnel, rapide et optimisé pour le
                             référencement local. Idéal pour lancer votre activité avec un
                             budget maîtrisé.
                         </p>
                         <div className="mt-8">
-                            <p className="text-xl font-medium text-cyan-300">
+                            <p className="text-base 2xl:text-xl font-medium text-cyan-300">
                             à partir de 500 € HT
                             </p>
                         </div>
@@ -145,22 +145,22 @@ function Services() {
                     className="relative aspect-3/4 p-8 flex flex-col justify-between backdrop-blur-md drop-shadow-[8px_8px_10px_rgba(0,0,0,0.7)] hover:drop-shadow-[12px_12px_30px_rgba(0,0,0,0.5)] transition-all duration-500"
                 >
                     {/* Title et Bouton absolute */}
-                    <h3 ref={titleCard2Ref} className="absolute top-5 left-1/2 -translate-x-1/2 text-xl lg:text-3xl font-semibold text-white mb-4">Business</h3>
-                    <button className="-z-2 absolute bottom-8 right-11 px-3 lg:px-5  text-white text-xs lg:text-base py-1 lg:py-2 transition-all duration-300 hover:scale-105 cursor-pointer">
+                    <h3 ref={titleCard2Ref} className="absolute top-5 left-1/2 -translate-x-1/2 text-xl 2xl:text-3xl font-semibold text-white mb-4">Business</h3>
+                    <button className="-z-2 absolute bottom-8 right-11 2xl:px-5  text-white text-sm 2xl:text-base py-1 lg:py-2 transition-all duration-300 hover:scale-105 cursor-pointer">
                         En savoir plus
                     </button>
                     {/* Card clipped */}
-                    <div className="relative flex flex-col justify-between px-4 lg:px-8 py-4 h-full w-full bg-linear-to-br from-cyan-900 to-cyan-500 overflow-hidden transition-all duration-500 [clip-path:url(#card)]">
+                    <div className="relative flex flex-col justify-between px-4 2xl:px-8 py-4 h-full w-full bg-linear-to-br from-cyan-900 to-cyan-500 overflow-hidden transition-all duration-500 [clip-path:url(#card)]">
                         <div className="absolute w-full h-1/2 top-0 left-0 border-b-10 border-b-gray-900">
                             <Image src={"/images/service2.png"} fill alt="mockup1" />
                         </div>
-                        <p className="text-cyan-100 text-lg leading-relaxed mt-80">
+                        <p className="text-cyan-100 text-lg leading-relaxed mt-60 2xl:mt-80">
                             Un site complet et administrable, avec CMS, SEO avancé et
                             intégration des réseaux sociaux. Conçu pour les entreprises en
                             croissance.
                         </p>
                         <div className="mt-8">
-                            <p className="text-xl font-medium text-cyan-300">
+                            <p className="text-base 2xl:text-xl font-medium text-cyan-300">
                             à partir de 1200 € HT
                             </p>
                         </div>
@@ -172,21 +172,21 @@ function Services() {
                     className="relative aspect-3/4 p-8 flex flex-col justify-between backdrop-blur-md drop-shadow-[8px_8px_10px_rgba(0,0,0,0.7)] hover:drop-shadow-[12px_12px_30px_rgba(0,0,0,0.5)] transition-all duration-500"
                 >
                     {/* Title et Bouton absolute */}
-                    <h3 ref={titleCard3Ref} className="absolute top-5 left-1/2 -translate-x-1/2 text-xl lg:text-3xl font-semibold text-white mb-4">Premium</h3>
-                    <button className="-z-2 absolute bottom-8 right-11 px-3 lg:px-5  text-white text-xs lg:text-base py-1 lg:py-2 transition-all duration-300 hover:scale-105 cursor-pointer">
+                    <h3 ref={titleCard3Ref} className="absolute top-5 left-1/2 -translate-x-1/2 text-xl 2xl:text-3xl font-semibold text-white mb-4">Premium</h3>
+                    <button className="-z-2 absolute bottom-8 right-11 2xl:px-5  text-white text-sm 2xl:text-base py-1 lg:py-2 transition-all duration-300 hover:scale-105 cursor-pointer">
                         Discuter du projet
                     </button>
                     {/* Card clipped */}
-                    <div className="relative flex flex-col justify-between px-4 lg:px-8 py-4 h-full w-full bg-linear-to-br from-cyan-900 to-cyan-500 overflow-hidden transition-all duration-500 [clip-path:url(#card)]">
+                    <div className="relative flex flex-col justify-between px-4 2xl:px-8 py-4 h-full w-full bg-linear-to-br from-cyan-900 to-cyan-500 overflow-hidden transition-all duration-500 [clip-path:url(#card)]">
                         <div className="absolute w-full h-1/2 top-0 left-0 border-b-10 border-b-gray-900">
                             <Image src={"/images/service3.png"} fill alt="mockup1" />
                         </div>
-                        <p className="text-cyan-100 text-lg leading-relaxed mt-80">
+                        <p className="text-cyan-100 text-lg leading-relaxed mt-60 2xl:mt-80">
                             Une solution sur mesure : design exclusif, animations, hébergement
                     premium et stratégie digitale complète.
                         </p>
                         <div className="mt-8">
-                            <p className="text-xl font-medium text-cyan-300">
+                            <p className="text-base 2xl:text-xl font-medium text-cyan-300">
                                 sur devis
                             </p>
                         </div>
