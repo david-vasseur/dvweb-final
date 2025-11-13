@@ -1,4 +1,4 @@
-import { Environment, OrbitControls } from '@react-three/drei';
+import { Environment } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 import React, { forwardRef, ReactNode } from 'react';
 
@@ -12,7 +12,7 @@ const Scene = forwardRef<HTMLDivElement, SceneProps>((props, ref) => {
     const { children, onReady } = props;
 
     return (
-        <div className="absolute w-full h-full">
+        <div className="absolute inset-0 w-full h-full">
             <Canvas
                 onCreated={() => {
                     console.log("Canvas created");

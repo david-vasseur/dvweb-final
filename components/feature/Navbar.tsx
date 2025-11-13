@@ -128,7 +128,7 @@ function Navbar() {
                                 {["Accueil", "Services", "Portfolio", "Contact", "FAQ", "Se Connecter"].map((item, index) => (
                                 <motion.li 
                                     className={`${item === "Se Connecter" && "mt-15"}`}
-                                    onClick={item === "Se Connecter" ? () => openModal(<SignInForm />) : undefined}
+                                    onClick={item === "Se Connecter" ? () => openModal(<SignInForm />) : () => setIsMenuOpen(false)}
                                     key={index}
                                     initial={{ opacity: 0, translateY: 100 }}
                                     animate={{ opacity: 1, translateY: 0 }}
@@ -139,7 +139,9 @@ function Navbar() {
                                     ease: "easeInOut",
                                     }}
                                 >
-                                    {item}
+                                    <Link href={`${item === "Accueil" ? "/" : item === "Services" ? "/#services" : "#"}`}>
+                                        {item}
+                                    </Link>
                                 </motion.li>
                                 ))}
                             </motion.ul>	
@@ -177,7 +179,7 @@ function Navbar() {
                         </Link>
 
                         <Link
-                            href="/bougies-parfumees"
+                            href="/#services"
                             className="relative -translate-y-4 text-zinc-100 hover:text-zinc-400 transition-colors duration-200
                                         after:absolute after:left-0 after:-bottom-1 after:w-full after:h-1 after:bg-linear-to-r after:from-cyan-400 after:via-blue-400 after:to-cyan-300
                                         after:scale-x-0 after:origin-left hover:after:scale-x-100
