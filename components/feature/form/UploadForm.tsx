@@ -26,9 +26,17 @@ export const UploadForm = () => {
                 return
             }
 
-            const response = await uploadFile(value.file, value.name);
+            const formData = new FormData();
+            formData.append("file", value.file);
+            formData.append("name", value.name);
 
-            openModal(response.message);
+            const res = await fetch("/api/upload", {
+                method: "POST",
+                body: formData
+            });
+            const data = await res.json();
+
+            openModal(data.message);
         },
     })
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
