@@ -13,6 +13,8 @@ import {
   X,
 } from "lucide-react";
 import SignOutButton from "@/components/feature/SignOutButton";
+import { UploadForm } from "@/components/feature/form/UploadForm";
+import Image from "next/image";
 
 export default function Dashboard() {
   const [active, setActive] = useState("profil");
@@ -29,16 +31,17 @@ export default function Dashboard() {
   return (
     <div className="h-svh bg-zinc-900 text-zinc-100 flex">
 
-      {/* Mobile top bar */}
-      <div className="absolute top-0 left-0 right-0 h-16 bg-zinc-950 border-b border-zinc-800 flex items-center px-4 md:hidden">
-        <button onClick={() => setOpen(true)}>
-          <Menu className="w-7 h-7 text-zinc-200" />
-        </button>
-        <h1 className="ml-4 text-xl font-semibold flex items-center gap-2">
-          <LayoutDashboard className="w-6 h-6 text-cyan-400" />
-          Dashboard
-        </h1>
-      </div>
+        {/* Mobile top bar */}
+        <div className="absolute top-0 left-0 right-0 h-16 bg-zinc-950 border-b border-zinc-800 flex items-center px-4 md:hidden">
+            <button onClick={() => setOpen(true)}>
+                <Menu className="w-7 h-7 text-zinc-200" />
+            </button>
+            <h1 className="ml-4 text-xl font-semibold flex items-center gap-2">
+                <Image src="/logo.png" width={24} height={24} alt="logo" />
+                {/* <LayoutDashboard className="w-6 h-6 text-cyan-400" /> */}
+                Dashboard
+            </h1>
+        </div>
 
       {/* Sidebar (desktop + mobile drawer) */}
       <aside
@@ -56,7 +59,7 @@ export default function Dashboard() {
         </button>
 
         <h1 className="text-2xl font-semibold mb-8 flex items-center gap-2">
-          <LayoutDashboard className="w-6 h-6 text-cyan-400" />
+          <Image src="/logo.png" width={24} height={24} alt="logo" />
           Dashboard
         </h1>
 
@@ -98,13 +101,19 @@ export default function Dashboard() {
         <h2 className="text-3xl font-bold mb-6 capitalize">{active}</h2>
 
         <div className="bg-zinc-800/40 border border-zinc-700 rounded-2xl p-6 shadow-lg">
-          <p className="text-zinc-300">
-            {active === "profil" && "Ici tu peux gérer ton profil utilisateur."}
-            {active === "uploader" && "Uploader un ou plusieurs fichiers ici."}
-            {active === "modifier" && "Modifier du contenu existant."}
-            {active === "stats" && "Visualise les statistiques de ton projet."}
-            {active === "requete" && "Effectue une requête ou une action avancée."}
-          </p>
+          {active === "uploader" ?  
+            <div className="flex items-center justify-center">
+                <UploadForm />
+            </div>
+          :
+            <p className="text-zinc-300">
+                {active === "profil" && "Ici tu peux gérer ton profil utilisateur."}
+                {active === "modifier" && "Modifier du contenu existant."}
+                {active === "stats" && "Visualise les statistiques de ton projet."}
+                {active === "requete" && "Effectue une requête ou une action avancée."}
+            </p>
+          }
+          
         </div>
       </main>
     </div>
