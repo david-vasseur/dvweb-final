@@ -40,7 +40,7 @@ export const SignInForm = () => {
 
                 if (result?.status === "complete") {
                     openModal('Connexion reussi');
-                    window.location.href= "/";
+                    window.location.href= "/dashboard";
                 } 
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
             } catch (error: any) {

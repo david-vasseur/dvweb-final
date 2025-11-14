@@ -11,7 +11,7 @@ export default function SignOutButton() {
     };
 
     return (
-        <div className='cursor-pointer absolute top-1/2 left-1/2 rounded-lg flex justify-center items-center px-4 py-2 bg-red-600 hover:bg-red-400 text-white font-bold transition-all duration-400' onClick={handleSignOut}>
+        <div className='cursor-pointer rounded-lg flex justify-center items-center px-4 py-2 bg-red-600 hover:bg-red-400 text-white font-bold transition-all duration-400' onClick={handleSignOut}>
             <span>Se deconnecter</span>
         </div>
     )
