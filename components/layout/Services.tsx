@@ -123,12 +123,12 @@ function Services() {
                         En savoir plus
                     </button>
                     {/* Card clipped */}
-                    <div className="relative flex flex-col justify-between px-4 2xl:px-8 py-3 h-full w-full bg-linear-to-br from-cyan-900 to-cyan-500 overflow-hidden transition-all duration-500 [clip-path:url(#card)]">
+                    <div className="relative flex flex-col justify-between h-full w-full  overflow-hidden transition-all duration-500 [clip-path:url(#card)]">
                         <div className="absolute w-full h-1/2 top-0 left-0 border-b-10 border-b-gray-900">
-                            <Image src={"/images/service1.png"} fill alt="mockup1" />
+                            <Image src={"/images/service1.png"} fill alt="mockup1" className="object-cover object-center inset-0! m-0!" />
                         </div>
                         <div className="flex-1 h-1/2" />
-                        <div className="flex-1 flex flex-col justify-between">
+                        <div className="flex-1 flex flex-col justify-between bg-linear-to-br from-cyan-900 to-cyan-500 px-4 2xl:px-8 py-3">
                             <p className="text-cyan-100 text-lg leading-relaxed mt-8">
                                 Un site vitrine professionnel, rapide et optimisé pour le
                                 référencement local. Idéal pour lancer votre activité avec un
@@ -154,12 +154,12 @@ function Services() {
                         En savoir plus
                     </button>
                     {/* Card clipped */}
-                    <div className="relative flex flex-col justify-between px-4 2xl:px-8 py-3 h-full w-full bg-linear-to-br from-cyan-900 to-cyan-500 overflow-hidden transition-all duration-500 [clip-path:url(#card)]">
-                        <div className="absolute w-full h-1/2 top-0 left-0 border-b-10 border-b-gray-900">
-                            <Image src={"/images/service2.png"} fill alt="mockup1" />
+                    <div className="relative flex flex-col justify-between h-full w-full overflow-hidden transition-all duration-500 [clip-path:url(#card)]">
+                        <div className="absolute inset-0 w-full h-1/2 border-b-10 border-b-gray-900 overflow-hidden">
+                            <Image src={"/images/service2.png"} fill alt="mockup1" className="object-cover object-center inset-0! m-0!" />
                         </div>
                         <div className="flex-1 h-1/2" />
-                        <div className="flex-1 flex flex-col justify-between">
+                        <div className="flex-1 flex flex-col justify-between px-4 2xl:px-8 py-3 bg-linear-to-br from-cyan-900 to-cyan-500">
                             <p className="text-cyan-100 text-lg leading-relaxed mt-8">
                                 Un site complet et administrable, avec CMS, SEO avancé et
                                 intégration des réseaux sociaux. Conçu pour les entreprises en
@@ -184,12 +184,12 @@ function Services() {
                         Discuter du projet
                     </button>
                     {/* Card clipped */}
-                    <div className="relative flex flex-col justify-between px-4 2xl:px-8 py-3 h-full w-full bg-linear-to-br from-cyan-900 to-cyan-500 overflow-hidden transition-all duration-500 [clip-path:url(#card)]">
-                        <div className="absolute w-full h-1/2 top-0 left-0 border-b-10 border-b-gray-900">
-                            <Image src={"/images/service3.png"} fill alt="mockup1" />
+                    <div className="relative flex flex-col justify-between  h-full w-full bg-linear-to-b from-transparent from-50% via-cyan-900 to-cyan-500 overflow-hidden transition-all duration-500 [clip-path:url(#card)]">
+                        <div className="absolute inset-0 w-full h-1/2 border-b-10 border-b-gray-900 overflow-hidden bg-transparent transform:translateZ(0)">
+                            <Image src={"/images/service3.png"} fill alt="mockup1" className="object-cover object-center inset-0! m-0!" />
                         </div>
                         <div className="flex-1 h-1/2" />
-                        <div className="flex-1 flex flex-col justify-between">
+                        <div className="flex-1 flex flex-col justify-between px-4 2xl:px-8 py-3 bg-linear-to-br from-cyan-900 to-cyan-500">
                             <p className="text-cyan-100 text-lg leading-relaxed mt-8">
                                 Une solution sur mesure : design exclusif, animations, hébergement
                                 premium et stratégie digitale complète.

@@ -11,6 +11,7 @@ import { motion } from "motion/react";
 import { MenuIcon, X } from "lucide-react";
 import { useModalStore } from "@/app/lib/store/modalStore";
 import { SignInForm } from "./form/SignInForm";
+import { SignedIn, SignedOut, useUser } from "@clerk/nextjs";
 
 function Navbar() {
     const [hovered, setHovered] = useState(false);
@@ -20,6 +21,8 @@ function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 	const NUM_BANDS = 4;
 	const bands = Array.from({ length: NUM_BANDS });
+
+    const { user } = useUser();
     
 
     useGSAP(() => {
@@ -214,15 +217,28 @@ function Navbar() {
                         >
                             FAQ
                         </Link>
-                        <button
-                            onClick={() => openModal(<SignInForm />)}
-                            className="relative -translate-y-4 text-zinc-100 hover:text-zinc-400 transition-colors cursor-pointer duration-200
-                                            after:absolute after:left-0 after:-bottom-1 after:w-full after:h-1 after:bg-linear-to-r after:from-cyan-400 after:via-blue-400 after:to-cyan-300
-                                            after:scale-x-0 after:origin-left hover:after:scale-x-100
-                                            after:transition-transform after:duration-300 after:block"
-                        >
-                            Se Connecter
-                        </button>
+                        <SignedOut>
+                            <button
+                                onClick={() => openModal(<SignInForm />)}
+                                className="relative -translate-y-4 text-zinc-100 hover:text-zinc-400 transition-colors cursor-pointer duration-200
+                                                after:absolute after:left-0 after:-bottom-1 after:w-full after:h-1 after:bg-linear-to-r after:from-cyan-400 after:via-blue-400 after:to-cyan-300
+                                                after:scale-x-0 after:origin-left hover:after:scale-x-100
+                                                after:transition-transform after:duration-300 after:block"
+                            >
+                                Se Connecter
+                            </button>
+                        </SignedOut>
+                        <SignedIn>
+                            <Link
+                                href={"/profile"}
+                                className="relative -translate-y-4 text-zinc-100 hover:text-zinc-400 transition-colors cursor-pointer duration-200
+                                                after:absolute after:left-0 after:-bottom-1 after:w-full after:h-1 after:bg-linear-to-r after:from-cyan-400 after:via-blue-400 after:to-cyan-300
+                                                after:scale-x-0 after:origin-left hover:after:scale-x-100
+                                                after:transition-transform after:duration-300 after:block"
+                            >
+                                {user?.firstName}
+                            </Link>
+                        </SignedIn>
 
 
                         {/* Label "Menu" visible quand replié */}
