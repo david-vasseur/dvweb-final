@@ -128,25 +128,62 @@ function Navbar() {
                                 animate={{ opacity: 1 }}
                                 transition={{ duration: 0.2, delay: 0.5, ease: "easeInOut" }}
                             >
-                                {["Accueil", "Services", "Portfolio", "Contact", "FAQ", "Se Connecter"].map((item, index) => (
-                                <motion.li 
-                                    className={`${item === "Se Connecter" && "mt-15"}`}
-                                    onClick={item === "Se Connecter" ? () => openModal(<SignInForm />) : () => setIsMenuOpen(false)}
-                                    key={index}
-                                    initial={{ opacity: 0, translateY: 100 }}
-                                    animate={{ opacity: 1, translateY: 0 }}
-                                    exit={{ opacity: 0, translateY: 100, transition: { duration: 0.2 } }} // sans delay ici
-                                    transition={{
-                                    duration: 0.2,
-                                    delay: isMenuOpen ? 0.3 + index * 0.2 : 0, // delay seulement à l'ouverture
-                                    ease: "easeInOut",
-                                    }}
-                                >
-                                    <Link href={`${item === "Accueil" ? "/" : item === "Services" ? "/#services" : "#"}`}>
-                                        {item}
-                                    </Link>
-                                </motion.li>
+                                {["Accueil", "Services", "Portfolio", "Contact", "FAQ"].map((item, index) => (
+                                    <>
+                                        <motion.li 
+                                            onClick={() => setIsMenuOpen(false)}
+                                            key={index}
+                                            initial={{ opacity: 0, translateY: 100 }}
+                                            animate={{ opacity: 1, translateY: 0 }}
+                                            exit={{ opacity: 0, translateY: 100, transition: { duration: 0.2 } }} // sans delay ici
+                                            transition={{
+                                            duration: 0.2,
+                                            delay: isMenuOpen ? 0.3 + index * 0.2 : 0, // delay seulement à l'ouverture
+                                            ease: "easeInOut",
+                                            }}
+                                        >
+                                            <Link href={`${item === "Accueil" ? "/" : item === "Services" ? "/#services" : "#"}`}>
+                                                {item}
+                                            </Link>
+                                        </motion.li>
+                                    </>
                                 ))}
+                                <SignedOut>
+                                    <motion.li 
+                                        className="mt-15"
+                                        onClick={() => openModal(<SignInForm />)}
+                                        initial={{ opacity: 0, translateY: 100 }}
+                                        animate={{ opacity: 1, translateY: 0 }}
+                                        exit={{ opacity: 0, translateY: 100, transition: { duration: 0.2 } }} // sans delay ici
+                                        transition={{
+                                        duration: 0.2,
+                                        delay: isMenuOpen ? 0.3 + 5 * 0.2 : 0, 
+                                        ease: "easeInOut",
+                                        }}
+                                    >
+                                        Se Connecter
+                                    </motion.li>
+                                </SignedOut>
+                                <SignedIn>
+                                    <motion.li 
+                                        className="mt-15 text-cyan-200"
+                                        onClick={() => setIsMenuOpen(false)}
+                                        initial={{ opacity: 0, translateY: 100 }}
+                                        animate={{ opacity: 1, translateY: 0 }}
+                                        exit={{ opacity: 0, translateY: 100, transition: { duration: 0.2 } }} // sans delay ici
+                                        transition={{
+                                        duration: 0.2,
+                                        delay: isMenuOpen ? 0.3 + 5 * 0.2 : 0, 
+                                        ease: "easeInOut",
+                                        }}
+                                    >
+                                        <Link
+                                            href={"/profile"}
+                                        >
+                                            {user?.firstName}
+                                        </Link>
+                                    </motion.li>
+                                </SignedIn>
                             </motion.ul>	
                         </div>
                     </>		
