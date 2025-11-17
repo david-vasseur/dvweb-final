@@ -196,7 +196,7 @@ function Navbar() {
                     </>
                 ) : (
                         <div
-                            className={`relative w-[50%] h-24 transition-all duration-500 ${hovered ? "translate-y-0" : "-translate-y-16"}`}
+                            className={`relative w-[50%] h-18 2xl:h-24 transition-all duration-500 ${hovered ? "translate-y-0" : "2xl:-translate-y-16 -translate-y-12"}`}
                             onMouseEnter={() => setHovered(true)}
                             onMouseLeave={() => setHovered(false)}
                             style={{
@@ -211,7 +211,7 @@ function Navbar() {
                             />
 
                             {/* Contenu des liens */}
-                            <div className="relative z-10 h-full flex items-center justify-around text-lg text-zinc-100 font-semibold">
+                            <div className="relative z-10 h-full flex items-center justify-around text-zinc-100 text-sm 2xl:text-lg 2xl:font-semibold">
                                 <Link
                                     href="/"
                                     className="relative -translate-y-4 text-zinc-100 hover:text-zinc-400 transition-colors duration-200
