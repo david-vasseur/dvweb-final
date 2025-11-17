@@ -1,6 +1,6 @@
 "use client"
 
-import { useGSAP } from '@gsap/react';
+import { ReactRef, useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { SplitText } from 'gsap/SplitText';
 import Image from 'next/image';
@@ -41,7 +41,7 @@ function Services() {
                 trigger: path,
                 start: "top 90%",
                 end: "bottom bottom",
-                scrub: 0.5,
+                scrub: 4.5,
                 },
                 ease: "none",
             });
@@ -102,49 +102,55 @@ function Services() {
 
     }, [])
 
+    const handleTitleHover = (ref: ReactRef) => {
+        if (!ref.current) return; 
+        gsap.to(ref.current, { y: -20, color: "#a2f4fd", duration: 0.2 });
+    };
+
     return (
         <section id="services" className="relative mx-auto min-h-svh flex flex-col items-center justify-evenly py-24 overflow-hidden">
 
-            {/* --- SVG décoratif animé --- */}
-<svg
-  className="absolute z-1 top-0 left-0 w-full h-full pointer-events-none opacity-40"
-  viewBox="0 0 160 90"
-  preserveAspectRatio="none"
-  xmlns="http://www.w3.org/2000/svg"
->
-  <defs>
-    <linearGradient id="blue-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stopColor="#0ea5e9" />
-      <stop offset="30%" stopColor="#38bdf8" />
-      <stop offset="60%" stopColor="#e0f2fe" />
-      <stop offset="100%" stopColor="#0ea5e9" />
-    </linearGradient>
-  </defs>
+            {/* --- SVG décoratif animé pour desktop --- */}
+            <svg
+                className="absolute z-1 top-0 left-0 w-full h-full pointer-events-none hidden lg:block opacity-40"
+                viewBox="0 0 1920 1080"
+                preserveAspectRatio="none"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <defs>
+                    <linearGradient id="blue-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="#0ea5e9" />
+                    <stop offset="30%" stopColor="#38bdf8" />
+                    <stop offset="60%" stopColor="#e0f2fe" />
+                    <stop offset="100%" stopColor="#0ea5e9" />
+                    </linearGradient>
+                </defs>
 
-  <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-    <feGaussianBlur in="SourceGraphic" stdDeviation="1" result="blur" />
-    <feMerge>
-        <feMergeNode in="blur" />
-        <feMergeNode in="blur" />
-        <feMergeNode in="SourceGraphic" />
-    </feMerge>
-  </filter>
+                <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur" />
+                    <feMerge>
+                        <feMergeNode in="blur" />
+                        <feMergeNode in="blur" />
+                        <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                </filter>
 
-  <path
-  ref={pathRef}
-    d="M 0.00,10.00
-           C 40.00,10.00 60.00,15.00 60.00,25.00
-             60.00,50.00 15.00,40.00 15.00,55.00
-             15.00,70.00 30.00,70.00 40.00,70.00
-             60.00,70.00 70.00,45.00 95.00,45.00
-             115.00,45.00 135.00,70.00 160.00,70.00"
-    stroke="url(#blue-gradient)"
-    strokeWidth="1"
-    filter="url(#glow)"
-    fill="none"
-  />
-</svg>
-
+                <path
+                    ref={pathRef}
+                        d="M 0.00,200.00
+                            C 0.00,200.00 480.00,40.00 680.00,120.00
+                                880.00,200.00 560.00,400.00 440.00,480.00
+                                320.00,560.00 466.50,800.00 640.00,800.00
+                                840.00,800.00 1000.00,360.00 1240.00,360.00
+                                1400.00,360.00 1440.00,600.00 1520.00,680.00
+                                1600.00,760.00 1680.00,800.00 1760.00,840.00
+                                1840.00,880.00 1920.00,880.00 1920.00,880.00"
+                    stroke="url(#blue-gradient)"
+                    strokeWidth="6"
+                    filter="url(#glow)"
+                    fill="none"
+                />
+            </svg>
 
             {/* Svg Card */}
             <svg width="0" height="0" className="absolute">
@@ -180,7 +186,7 @@ function Services() {
             />
 
             {/* Fond */}
-            <div className="absolute inset-0 z-0 bg-gray-900" />
+            <div className="absolute inset-0 z-0 bg-linear-to-b from-gray-900 to-cyan-950" />
 
             {/* Titre */}
             <h2 ref={titleRef} className="z-10 text-3xl 2xl:text-5xl md:text-6xl font-bold text-center text-white md:max-w-5xl leading-tight">
@@ -196,6 +202,10 @@ function Services() {
             >
                 {/* Service 1 */}
                 <div 
+                    onMouseEnter={() => {handleTitleHover(titleCard1Ref)}} 
+                    onMouseLeave={() => {
+                        if (titleCard1Ref.current) gsap.to(titleCard1Ref.current, { y: 0, color: "#fff", duration: 0.2 });
+                    }}
                     className="relative aspect-3/4 p-8 flex flex-col justify-between drop-shadow-[8px_8px_10px_rgba(0,0,0,0.7)] hover:drop-shadow-[12px_12px_30px_rgba(0,0,0,0.5)] transition-all duration-500 group"
                 >
                     <h3 ref={titleCard1Ref} className="absolute top-5 left-1/2 -translate-x-1/2 text-xl 2xl:text-3xl font-semibold text-white mb-4">Starter</h3>
@@ -224,6 +234,10 @@ function Services() {
 
                 {/* Service 2 */}
                 <div 
+                    onMouseEnter={() => {handleTitleHover(titleCard2Ref)}} 
+                    onMouseLeave={() => {
+                        if (titleCard2Ref.current) gsap.to(titleCard2Ref.current, { y: 0, color: "#fff", duration: 0.2 });
+                    }}
                     className="relative aspect-3/4 p-8 flex flex-col justify-between drop-shadow-[8px_8px_10px_rgba(0,0,0,0.7)] hover:drop-shadow-[12px_12px_30px_rgba(0,0,0,0.5)] transition-all duration-500 group"
                 >
                     <h3 ref={titleCard2Ref} className="absolute top-5 left-1/2 -translate-x-1/2 text-xl 2xl:text-3xl font-semibold text-white mb-4">Business</h3>
@@ -253,6 +267,10 @@ function Services() {
 
                 {/* Service 3 */}
                 <div 
+                    onMouseEnter={() => {handleTitleHover(titleCard3Ref)}} 
+                    onMouseLeave={() => {
+                        if (titleCard3Ref.current) gsap.to(titleCard3Ref.current, { y: 0, color: "#fff", duration: 0.2 });
+                    }}
                     className="relative aspect-3/4 p-8 flex flex-col justify-between drop-shadow-[8px_8px_10px_rgba(0,0,0,0.7)] hover:drop-shadow-[12px_12px_30px_rgba(0,0,0,0.5)] transition-all duration-500 group"
                 >
                     {/* Title et Bouton absolute */}
