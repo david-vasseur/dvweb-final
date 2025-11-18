@@ -2,6 +2,7 @@
 
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { SplitText } from "gsap/SplitText";
 import { useRef } from "react";
 
 export default function Page() {
@@ -13,11 +14,16 @@ export default function Page() {
     const titleRef = useRef(null);
     const subtitleRef = useRef(null);
     const ctaRef = useRef(null);
+    const featuresSectionRef = useRef(null);
+    const headlineRef = useRef(null);
+    const splitRef = useRef(null);
+    const listRef = useRef<HTMLUListElement>(null);
+    const ctaFinalRef = useRef(null);
 
     useGSAP(() => {
-        if (!leftRef.current || !rightRef.current || !sectionRef.current || !headerRef.current) return;
+        if (!leftRef.current || !rightRef.current || !sectionRef.current || !headerRef.current || !listRef.current) return;
         const leftSection = leftRef.current.children;
-        const rightSection = rightRef.current.children;
+        const listItems = listRef.current.children;
         
         gsap.set(rightRef.current, { y: "-200vh" });
 
@@ -65,6 +71,66 @@ export default function Page() {
         },
         "-=0.4"
         );
+
+        /* Cta Section Animation */
+
+        // SplitText : titres en words + chars
+    const split = new SplitText(splitRef.current, {
+        type: "chars",
+    });
+    const chars = split.chars;
+
+    gsap.set(chars, { yPercent: 100, opacity: 0 });
+
+    gsap.timeline({
+        scrollTrigger: {
+        trigger: featuresSectionRef.current,
+        start: "top 75%",
+        once: true,
+        },
+    })
+        // ---- Headline animation ----
+        .to(chars, {
+        yPercent: 0,
+        opacity: 1,
+        duration: 0.6,
+        ease: "power3.out",
+        stagger: 0.02,
+        })
+
+        // ---- List fade + slide ----
+        .to(
+        listRef.current,
+        {
+            opacity: 1,
+            duration: 0.4,
+            ease: "power2.out",
+        },
+        "-=0.3"
+        )
+        .from(
+        listItems,
+        {
+            x: -20,
+            opacity: 0,
+            duration: 0.6,
+            ease: "power2.out",
+            stagger: 0.08,
+        },
+        "<"
+        )
+
+        // ---- CTA ----
+        .to(
+        ctaFinalRef.current,
+        {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            ease: "power3.out",
+        },
+        "-=0.2"
+        );
         
     }, []);
 
@@ -75,9 +141,11 @@ export default function Page() {
                 className="relative flex items-center justify-center h-screen w-full overflow-hidden"
             >
                 {/* Background Image */}
-                <img
-                    src="/images/service1.png"
-                    alt="Site Starter mockup"
+                <video
+                    src="/videos/starter.mp4"
+                    autoPlay
+                    muted
+                    playsInline
                     className="absolute top-0 left-0 w-full h-full object-cover opacity-40"
                 />
 
@@ -102,7 +170,7 @@ export default function Page() {
 
                     <button
                         ref={ctaRef}
-                        className="px-10 py-4 bg-cyan-400 text-black font-semibold text-lg rounded-xl shadow-xl hover:scale-105 transition-transform opacity-0 translate-y-10"
+                        className="px-10 py-4 bg-cyan-400 text-black font-semibold text-lg rounded-xl shadow-xl hover:scale-105 transition-transform opacity-1 translate-y-10"
                     >
                         Voir l’offre Starter →
                     </button>
@@ -113,26 +181,28 @@ export default function Page() {
                 <div ref={stickyRef} className="sticky z-500 flex top-0 left-0 h-screen w-full overflow-hidden bg-linear-to-b from-gray-900/90 to-cyan-950">
                     <div ref={leftRef} className="relative flex-1 h-full ">
                           {/* TEXT 1 — Intro / valeur */}
-                        <div className="relative h-svh w-full flex flex-col justify-center items-start px-16 bg-cyan-400/10 text-white">
-                            <h2 className="text-5xl font-bold mb-6">Un site vitrine professionnel pour 500 € HT</h2>
-                            <p className="text-xl leading-relaxed max-w-xl">
-                                Idéal pour lancer votre activité avec un budget maîtrisé.
-                                Votre site Starter met en avant votre entreprise grâce à une structure claire,
-                                un design moderne et un message impactant.
-                            </p>
+                        <div className="relative h-svh w-full flex flex-col justify-center items-start px-16 text-white">
+                            <h2 className="text-5xl font-bold mb-6">Les fonctionnalités essentielles</h2>
+                            <ul className="text-xl leading-relaxed space-y-3 max-w-xl">
+                                <li>• 1 homepage moderne & orientée conversion</li>
+                                <li>• 3 à 5 sections essentielles (services, contact, présentation…)</li>
+                                <li>• Formulaire de contact intégré</li>
+                                <li>• Version mobile optimisée</li>
+                                <li>• SEO technique inclus</li>
+                            </ul>
                         </div>
 
                         {/* IMAGE 2 — Fonctionnalités */}
                         <div className="relative h-svh w-full flex justify-center items-center">
                             <img 
-                                src="/images/service1.png" 
+                                src="/images/seo-optimisation.webp" 
                                 alt="Fonctionnalités site Starter"
                                 className="w-[70%] rounded-2xl shadow-2xl"
                             />
                         </div>
 
                         {/* TEXT 3 — CTA Final */}
-                        <div className="relative h-svh w-full flex flex-col justify-center items-start px-16 bg-cyan-800/10 text-white">
+                        <div className="relative h-svh w-full flex flex-col justify-center items-start px-16 text-white">
                             <h2 className="text-5xl font-bold mb-6">Un site qui vous fait gagner du temps</h2>
                             <p className="text-xl leading-relaxed max-w-xl">
                                 Grâce à une mise en ligne rapide et un design efficace,
@@ -149,28 +219,33 @@ export default function Page() {
                         {/* IMAGE 1 — Mockup principal */}
                         <div className="relative h-svh w-full flex justify-center items-center">
                             <img 
-                                src="/images/service2.png" 
+                                src="/images/focus.webp" 
                                 alt="Mockup site starter"
                                 className="w-[70%] rounded-2xl shadow-2xl"
                             />
                         </div>
 
                         {/* TEXT 2 — Fonctionnalités clés */}
-                        <div className="relative h-svh w-full flex flex-col justify-center items-start px-16 bg-cyan-600/10 text-white">
-                            <h2 className="text-5xl font-bold mb-6">Les fonctionnalités essentielles</h2>
+                        <div className="relative h-svh w-full flex flex-col justify-center items-start px-16 text-white">
+                            <h2 className="text-5xl font-bold mb-6">Votre prestation SEO en 5 points clairs</h2>
                             <ul className="text-xl leading-relaxed space-y-3 max-w-xl">
-                                <li>• 1 homepage moderne & orientée conversion</li>
-                                <li>• 3 à 5 sections essentielles (services, contact, présentation…)</li>
-                                <li>• Formulaire de contact intégré</li>
-                                <li>• Version mobile optimisée</li>
-                                <li>• SEO technique inclus</li>
+                                <li>Audit technique + audit de contenu + analyse concurrentielle
+                                    → Pour identifier ce qui bloque votre visibilité actuelle.</li>
+                                <li>Identification des termes réellement recherchés par vos futurs clients
+                                    → Pour cibler les bonnes opportunités de trafic.</li>
+                                <li>Amélioration de la vitesse, du mobile, des balises, de l’architecture des pages
+                                    → Pour rendre votre site performant et compréhensible pour Google.</li>
+                                <li>Réécriture ou création de pages, articles, textes optimisés
+                                    → Pour répondre aux besoins des internautes et se placer devant la concurrence.</li>
+                                <li>Rapports clairs + recommandations + ajustements
+                                    → Pour garantir une progression durable et mesurable du trafic.</li>
                             </ul>
                         </div>
 
                         {/* IMAGE 3 — Showcase final */}
                         <div className="relative h-svh w-full flex justify-center items-center">
                             <img 
-                                src="/images/service3.png" 
+                                src="/images/essentials.webp" 
                                 alt="Exemple site final"
                                 className="w-[75%] rounded-2xl shadow-2xl"
                             />
@@ -178,7 +253,51 @@ export default function Page() {
                     </div>
                 </div>        
             </section>
-            <section className="relative z-1000 h-svh bg-green-950 w-full"></section>
+            <section
+                ref={featuresSectionRef}
+                className="relative h-svh w-full text-white flex flex-col items-center justify-center px-10"
+            >
+            {/* AMORCE */}
+            <h2
+                ref={headlineRef}
+                className="text-5xl md:text-6xl font-bold mb-12 opacity-0"
+            >
+                <span ref={splitRef}>Tout ce que votre site Starter inclut</span>
+            </h2>
+
+            {/* LISTE */}
+            <ul
+                ref={listRef}
+                className="text-xl space-y-4 max-w-2xl opacity-0"
+            >
+                <li className="flex items-start gap-3">
+                <span className="text-cyan-400 text-2xl">✓</span> Design moderne et responsive
+                </li>
+                <li className="flex items-start gap-3">
+                <span className="text-cyan-400 text-2xl">✓</span> 1 homepage + 3–5 sections essentielles
+                </li>
+                <li className="flex items-start gap-3">
+                <span className="text-cyan-400 text-2xl">✓</span> Optimisation mobile & tablette
+                </li>
+                <li className="flex items-start gap-3">
+                <span className="text-cyan-400 text-2xl">✓</span> Formulaire de contact intégré
+                </li>
+                <li className="flex items-start gap-3">
+                <span className="text-cyan-400 text-2xl">✓</span> SEO technique (balises, structure, vitesse)
+                </li>
+                <li className="flex items-start gap-3">
+                <span className="text-cyan-400 text-2xl">✓</span> Hébergement & conseils techniques
+                </li>
+            </ul>
+
+            {/* CTA */}
+            <button
+                ref={ctaFinalRef}
+                className="mt-14 px-10 py-4 bg-cyan-400 text-black font-semibold text-lg rounded-xl shadow-xl hover:scale-105 transition-transform opacity-0"
+            >
+                Demander un devis gratuit →
+            </button>
+            </section>
         </div>
     );
 }

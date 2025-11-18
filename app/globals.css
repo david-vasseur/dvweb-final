@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-	--background-gradient: linear-gradient(135deg, #025463, #034368, #031024); /* cyan-500 → blue-500 */
+	--background-gradient: linear-gradient(180deg, #025463, #034368, #101828); /* cyan-500 → blue-500 */
 	--foreground: #e0e0e0;
 	--font-sans: var(--font-sans);
 }

@@ -7,8 +7,9 @@ import Services from "@/components/layout/Services";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import NextTest from "@/components/layout/NextTest";
+import { SplitText } from "gsap/SplitText";
 
-gsap.registerPlugin(ScrollTrigger)
+gsap.registerPlugin(ScrollTrigger, SplitText)
 
 export default function Home() {
 
