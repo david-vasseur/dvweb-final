@@ -4,6 +4,7 @@ import { ReactRef, useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { SplitText } from 'gsap/SplitText';
 import Image from 'next/image';
+import Link from 'next/link';
 import React, { useRef } from 'react'
 
 function Services() {
@@ -209,9 +210,9 @@ function Services() {
                     className="relative aspect-3/4 p-8 flex flex-col justify-between drop-shadow-[8px_8px_10px_rgba(0,0,0,0.7)] hover:drop-shadow-[12px_12px_30px_rgba(0,0,0,0.5)] transition-all duration-500 group"
                 >
                     <h3 ref={titleCard1Ref} className="absolute top-5 left-1/2 -translate-x-1/2 text-xl 2xl:text-3xl font-semibold text-white mb-4">Starter</h3>
-                    <button ref={ctaCard1Ref} className="-z-2 absolute bottom-8 right-12 2xl:right-10 2xl:px-5 text-white text-sm 2xl:text-base py-1 lg:py-2 transition-all duration-300 hover:tracking-widest hover:text-cyan-200 cursor-pointer">
+                    <Link href="/starter" ref={ctaCard1Ref} className="-z-2 absolute bottom-8 right-12 2xl:right-10 2xl:px-5 text-white text-sm 2xl:text-base py-1 lg:py-2 transition-all duration-300 hover:tracking-widest hover:text-cyan-200 cursor-pointer">
                         En savoir plus
-                    </button>
+                    </Link>
                     <div className="relative flex flex-col justify-between h-full w-full bg-linear-to-b from-transparent from-55% via-cyan-900 to-cyan-500 overflow-hidden transition-all duration-500 [clip-path:url(#card)]">
                         <div className="absolute inset-0 w-full h-1/2 border-b-10 border-b-transparent overflow-hidden bg-transparent transform:translateZ(0) group-hover:scale-108 duration-500 transition-all">
                             <Image src={"/images/service1.png"} fill alt="mockup1" className="object-cover object-center inset-0! m-0!" />

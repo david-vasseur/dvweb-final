@@ -28,7 +28,7 @@ export default function RootLayout({
 		<ClerkProvider>
 			<html lang="fr">
 				<body
-					className={`${archivo.className} antialiased`}
+					className={`${archivo.className} antialiased overflow-x-hidden`}
 				>
 					<Navbar />
 					{children}
