@@ -5,10 +5,18 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
 import { useEffect } from "react";
+import { useDeviceStore } from "./lib/store/useDeviceStore";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
 const Template = ({ children }: { children: React.ReactNode }) => {
+
+    const { detectDevice } = useDeviceStore();
+
+	useEffect(() => {
+		const cleanup = detectDevice();
+		return cleanup; 
+	}, [detectDevice]);
 
     useEffect(() => {
         animatePageIn()
