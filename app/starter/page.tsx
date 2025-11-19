@@ -174,6 +174,7 @@ export default function Page() {
                     <h1
                         ref={titleRef}
                         className="text-cyan-300 max-w-6xl text-6xl md:text-7xl font-extrabold mb-6 opacity-0 translate-y-10"
+                        style={{ lineHeight: "100px" }}
                     >
                         Votre site vitrine professionnel pour 500€ HT
                     </h1>
