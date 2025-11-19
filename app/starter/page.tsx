@@ -58,27 +58,23 @@ export default function Page() {
         duration: 0.8,
         ease: "power3.out",
     })
-        .to(
-        subtitleRef.current,
-        {
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            ease: "power3.out",
-        },
-        "-=0.4"
-        )
-        .to(
-        ctaRef.current,
-        {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            duration: 0.8,
-            ease: "power3.out",
-        },
-        "-=0.4"
-        );
+    .to(subtitleRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power3.out",
+    },
+    "-=0.4"
+    )
+    .to(ctaRef.current, {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.8,
+        ease: "power3.out",
+    },
+    "-=0.4"
+    );
 
         /* Cta Section Animation */
 

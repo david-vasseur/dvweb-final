@@ -21,6 +21,7 @@ function Header() {
     const subtitleRef = useRef<HTMLParagraphElement>(null);
     const ctaRef = useRef<HTMLDivElement>(null);
     const logoRef = useRef<THREE.Group>(null);
+    const circleRef = useRef(null);
 
     const wordsKey: WordKey[] = ["inspirer", "captiver", "séduire"];
     const phraseEnds = [
@@ -143,6 +144,10 @@ function Header() {
             });
         };
 
+        gsap.to(circleRef.current, {
+            scale: 4, duration: .4, delay: .1, ease: "power2.in"
+        })
+
         // Lancer la première fois
         updateSubtitle();
 
@@ -155,8 +160,9 @@ function Header() {
     return (
         <header
             ref={heroRef}
-            className="h-svh w-svw flex pb-10 lg:pb-30 items-end bg-linear-to-b from-cyan-700 to-cyan-950 justify-center relative overflow-hidden px-6"
+            className="h-svh w-svw flex  items-end bg-linear-to-b from-cyan-700 to-cyan-950 justify-center relative overflow-hidden px-6"
         >
+            <div ref={circleRef} className="absolute z-20 w-full h-screen instet-0 bg-radial from-5% to-40% from-black/10 to-black pointer-events-none" />
             <div className="absolute inset-0 bg-linear-to-t from-gray-900 via-cyan-500/50 to-cyan-500/5" />
             <Scene onReady={handleSceneReady}>
                 <Logo ref={logoRef} />
@@ -178,7 +184,7 @@ function Header() {
                 >
                 </p>
 
-                <div ref={ctaRef} className="flex flex-col sm:flex-row gap-4 justify-center">
+                <div ref={ctaRef} className="flex flex-col mb-10 lg:mb-30 sm:flex-row gap-4 justify-center">
                     <Button
                         size="lg"
                         className="bg-linear-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white px-8 py-6 text-lg group cursor-pointer"

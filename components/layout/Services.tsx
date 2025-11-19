@@ -187,7 +187,7 @@ function Services() {
             />
 
             {/* Fond */}
-            <div className="absolute inset-0 z-0 bg-linear-to-b from-gray-900 to-cyan-950" />
+            <div className="absolute inset-0 z-0 bg-linear-to-b from-black/83 via-gray-900 to-cyan-950" />
 
             {/* Titre */}
             <h2 ref={titleRef} className="z-10 text-3xl 2xl:text-5xl md:text-6xl font-bold text-center text-white md:max-w-5xl leading-tight">
