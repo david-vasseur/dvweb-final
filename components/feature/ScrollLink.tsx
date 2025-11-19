@@ -18,7 +18,7 @@ export default function ScrollLink({ to, children }: { to: string, children: Rea
     };
 
     return (
-        <a href={to} onClick={handleClick}>
+        <a className="" href={to} onClick={handleClick}>
             {children}
         </a>
     );

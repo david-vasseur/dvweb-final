@@ -1,8 +1,10 @@
 "use client"
 
+import { Button } from "@/components/ui/Button";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { SplitText } from "gsap/SplitText";
+import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import { useRef } from "react";
 
@@ -84,13 +86,12 @@ export default function Page() {
     });
     const chars = split.chars;
 
-    gsap.set(chars, { yPercent: 100, opacity: 0 });
+    gsap.set(chars, { yPercent: 100, opacity: 1 });
 
     gsap.timeline({
         scrollTrigger: {
         trigger: featuresSectionRef.current,
         start: "top 75%",
-        once: true,
         },
     })
         // ---- Headline animation ----
@@ -172,7 +173,7 @@ export default function Page() {
                 <div className="relative z-10 flex flex-col items-center text-center px-6">
                     <h1
                         ref={titleRef}
-                        className="text-white text-6xl md:text-7xl font-bold mb-6 opacity-0 translate-y-10"
+                        className="text-cyan-300 max-w-6xl text-6xl md:text-7xl font-extrabold mb-6 opacity-0 translate-y-10"
                     >
                         Votre site vitrine professionnel pour 500€ HT
                     </h1>
@@ -184,12 +185,14 @@ export default function Page() {
                         Offrez une présence en ligne moderne, rapide et efficace — même avec un petit budget.
                     </p>
 
-                    <button
+                    <Button
                         ref={ctaRef}
-                        className="px-10 py-4 bg-cyan-400 text-black font-semibold text-lg rounded-xl shadow-xl hover:scale-105 transition-transform opacity-1 translate-y-10"
+                        size="lg"
+                        className="mt-14 bg-linear-to-r from-cyan-500 to-cyan-800 hover:from-cyan-600 hover:to-cyan-800 text-white px-8 py-6 text-lg group cursor-pointer hover:shadow-xl hover:shadow-cyan-950 transition-all duration-300"
                     >
-                        Voir l’offre Starter →
-                    </button>
+                        Démarrer un projet
+                        <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
+                    </Button>
                 </div>
             </header>
 
@@ -278,7 +281,7 @@ export default function Page() {
                 {/* AMORCE */}
                 <h2
                     ref={headlineRef}
-                    className="text-5xl md:text-6xl font-bold mb-12 opacity-0"
+                    className="text-5xl md:text-6xl font-bold mb-12 opacity-1"
                 >
                     <span ref={splitRef}>Tout ce que votre site Starter inclut</span>
                 </h2>
@@ -309,12 +312,20 @@ export default function Page() {
                 </ul>
 
                 {/* CTA */}
-                <button
+                <Button
                     ref={ctaFinalRef}
+                    size="lg"
+                    className="mt-14 bg-linear-to-r from-cyan-500 to-cyan-800 hover:from-cyan-600 hover:to-cyan-800 text-white px-8 py-6 text-lg group cursor-pointer"
+                >
+                    Démarrer un projet
+                    <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
+                </Button>
+                {/* <button
+                    
                     className="mt-14 px-10 py-4 bg-cyan-400 text-black font-semibold text-lg rounded-xl shadow-xl hover:scale-105 transition-transform opacity-0"
                 >
                     Demander un devis gratuit →
-                </button>
+                </button> */}
             </section>
         </div>
     );

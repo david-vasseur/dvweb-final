@@ -68,7 +68,7 @@ function Footer() {
                     {/* Colonne 1 - À propos */}
                     <div className="footer-col space-y-6">
                         <div className="flex items-center gap-3">
-                            <div className="w-12 h-12 bg-linear-to-br from-cyan-500 to-blue-500 rounded-xl flex items-center justify-center">
+                            <div className="w-12 h-12 bg-linear-to-br from-cyan-700 to-cyan-500 rounded-xl flex items-center justify-center">
                                 <Image src="/logo.png" width={32} height={32} alt="Logo" />
                             </div>
                             <h3 className="text-2xl font-bold text-white">DVWEB</h3>

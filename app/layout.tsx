@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/feature/Navbar";
 import Modal from "@/components/layout/modal/Modal";
 import { ClerkProvider } from "@clerk/nextjs";
+import { ReactLenis } from "@/utils/lenis";
 
 const archivo = Archivo({
 	variable: "--font-sans"
@@ -27,13 +28,15 @@ export default function RootLayout({
 	return (
 		<ClerkProvider>
 			<html lang="fr">
-				<body
-					className={`${archivo.className} antialiased overflow-x-hidden`}
-				>
-					<Navbar />
-					{children}
-					<Modal />
-				</body>
+				<ReactLenis root>
+					<body
+						className={`${archivo.className} antialiased overflow-x-hidden`}
+					>
+						<Navbar />
+						{children}
+						<Modal />
+					</body>
+				</ReactLenis>
 			</html>
 		</ClerkProvider>
 	);
