@@ -1,7 +1,12 @@
 "use client"
 
 import { animatePageIn } from "@/utils/animations";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SplitText } from "gsap/SplitText";
 import { useEffect } from "react";
+
+gsap.registerPlugin(ScrollTrigger, SplitText);
 
 const Template = ({ children }: { children: React.ReactNode }) => {
 

@@ -27,48 +27,25 @@ export default function Page() {
         
        gsap.set(rightRef.current, { yPercent: -200 });
 
- const tl1 = gsap.timeline({
-    scrollTrigger: {
-        trigger: sectionRef.current,
-        start: "top top",
-        end: "+=900vh",
-        scrub: 0.5, 
-        pin: stickyRef.current,
-        invalidateOnRefresh: true,
-        snap: {
-            snapTo: (progress) => {
-                // Détermine le step actuel
-                const steps = [0, 0.5, 1];
-                const currentIndex = steps.findIndex((step, i) => {
-                    const nextStep = steps[i + 1] || 1;
-                    return progress >= step && progress < nextStep;
-                });
-                
-                // Trouve le step le plus proche
-                const current = steps[currentIndex];
-                const next = steps[currentIndex + 1] || 1;
-                
-                // Si on est plus proche du suivant, on y va, sinon on reste
-                return (progress - current) > (next - current) / 2 ? next : current;
-            },
-            duration: 0.2,
-            ease: "power2.inOut",
-            delay: 0.1
-        },
-        onUpdate: (self) => {
-            console.log("Progress:", self.progress);
-        }
-    }
-});
+        const tl1 = gsap.timeline({
+            scrollTrigger: {
+                trigger: sectionRef.current,
+                start: "top top",
+                end: "+=1200vh",
+                scrub: 1.5, 
+                pin: stickyRef.current,
+                invalidateOnRefresh: true,
+            }
+        });
 
-tl1.to(leftSection, { 
-    yPercent: -200, 
-    ease: "none" 
-}, 0)
-.to(rightRef.current, { 
-    yPercent: 0,
-    ease: "none" 
-}, 0);
+        tl1.to(leftSection, { 
+            yPercent: -200, 
+            ease: "none" 
+        }, 0)
+        .to(rightRef.current, { 
+            yPercent: 0,
+            ease: "none" 
+        }, 0);
     /* Animation Header */
 
     const tl = gsap.timeline({ delay: 0.2 });
