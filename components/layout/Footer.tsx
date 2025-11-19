@@ -2,7 +2,6 @@
 
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone, Twitter } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -12,8 +11,7 @@ import { useRef } from 'react';
 function Footer() {
     const footerRef = useRef(null);
     const lineRef = useRef(null);
-    const pathname = usePathname() || "/";
-    console.log(pathname);
+    const pathname = usePathname();
     
 
     useGSAP(() => {
@@ -22,7 +20,7 @@ function Footer() {
             scrollTrigger: {
                 trigger: footerRef.current,
                 start: "top 80%",
-                end: "top 60%",
+                end: "bottom bottom",
                 scrub: 1,
             },
             scaleX: 0,
@@ -35,7 +33,7 @@ function Footer() {
             scrollTrigger: {
                 trigger: footerRef.current,
                 start: "top 75%",
-                end: "top 50%",
+                end: "bottom bottom",
                 scrub: 1,
             },
             y: 50,
@@ -43,12 +41,10 @@ function Footer() {
             stagger: 0.1,
             ease: "power2.out",
         });
-
-        ScrollTrigger.refresh();
     }, { scope: footerRef, dependencies: [pathname] });
 
     return (
-        <footer ref={footerRef} className="relative bg-linear-to-b from-gray-900 to-black text-gray-300 pt-20 pb-10 overflow-hidden">
+        <footer ref={footerRef} className="relative w-screen bg-linear-to-b from-gray-900 to-black text-gray-300 pt-20 pb-10 overflow-hidden">
             {/* Dots décoration */}
             <div className="absolute top-10 left-10 w-20 h-20 opacity-10">
                 <div className="grid grid-cols-3 gap-2">
@@ -100,12 +96,6 @@ function Footer() {
                             >
                                 <Linkedin className="w-5 h-5" />
                             </Link>
-                            <Link 
-                                href="https://twitter.com" 
-                                className="w-10 h-10 bg-gray-800/50 hover:bg-cyan-500/20 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 border border-gray-700/50 hover:border-cyan-500/50"
-                            >
-                                <Twitter className="w-5 h-5" />
-                            </Link>
                         </div>
                     </div>
 
@@ -114,31 +104,31 @@ function Footer() {
                         <h4 className="text-xl font-bold text-white">Navigation</h4>
                         <ul className="space-y-3">
                             <li>
-                                <Link href="#hero" className="hover:text-cyan-400 transition-colors duration-300 flex items-center gap-2 group">
+                                <Link href="/" className="hover:text-cyan-400 transition-colors duration-300 flex items-center gap-2 group">
                                     <span className="w-0 group-hover:w-2 h-px bg-cyan-400 transition-all duration-300"></span>
                                     Accueil
                                 </Link>
                             </li>
                             <li>
-                                <Link href="#services" className="hover:text-cyan-400 transition-colors duration-300 flex items-center gap-2 group">
+                                <Link href="/#services" className="hover:text-cyan-400 transition-colors duration-300 flex items-center gap-2 group">
                                     <span className="w-0 group-hover:w-2 h-px bg-cyan-400 transition-all duration-300"></span>
                                     Services
                                 </Link>
                             </li>
                             <li>
-                                <Link href="#portfolio" className="hover:text-cyan-400 transition-colors duration-300 flex items-center gap-2 group">
+                                <Link href="/#portfolio" className="hover:text-cyan-400 transition-colors duration-300 flex items-center gap-2 group">
                                     <span className="w-0 group-hover:w-2 h-px bg-cyan-400 transition-all duration-300"></span>
                                     Portfolio
                                 </Link>
                             </li>
                             <li>
-                                <Link href="#about" className="hover:text-cyan-400 transition-colors duration-300 flex items-center gap-2 group">
+                                <Link href="/#contact" className="hover:text-cyan-400 transition-colors duration-300 flex items-center gap-2 group">
                                     <span className="w-0 group-hover:w-2 h-px bg-cyan-400 transition-all duration-300"></span>
                                     Contact
                                 </Link>
                             </li>
                             <li>
-                                <Link href="#contact" className="hover:text-cyan-400 transition-colors duration-300 flex items-center gap-2 group">
+                                <Link href="/#faq" className="hover:text-cyan-400 transition-colors duration-300 flex items-center gap-2 group">
                                     <span className="w-0 group-hover:w-2 h-px bg-cyan-400 transition-all duration-300"></span>
                                     FAQ
                                 </Link>
@@ -151,19 +141,19 @@ function Footer() {
                         <h4 className="text-xl font-bold text-white">Nos Services</h4>
                         <ul className="space-y-3">
                             <li>
-                                <Link href="#design" className="hover:text-cyan-400 transition-colors duration-300 flex items-center gap-2 group">
+                                <Link href="/starter" className="hover:text-cyan-400 transition-colors duration-300 flex items-center gap-2 group">
                                     <span className="w-0 group-hover:w-2 h-px bg-cyan-400 transition-all duration-300"></span>
                                     Starter Pack
                                 </Link>
                             </li>
                             <li>
-                                <Link href="#development" className="hover:text-cyan-400 transition-colors duration-300 flex items-center gap-2 group">
+                                <Link href="/pro" className="hover:text-cyan-400 transition-colors duration-300 flex items-center gap-2 group">
                                     <span className="w-0 group-hover:w-2 h-px bg-cyan-400 transition-all duration-300"></span>
                                     Pro Pack
                                 </Link>
                             </li>
                             <li>
-                                <Link href="#performance" className="hover:text-cyan-400 transition-colors duration-300 flex items-center gap-2 group">
+                                <Link href="/premium" className="hover:text-cyan-400 transition-colors duration-300 flex items-center gap-2 group">
                                     <span className="w-0 group-hover:w-2 h-px bg-cyan-400 transition-all duration-300"></span>
                                     Premium Pack
                                 </Link>

@@ -4,7 +4,6 @@ import "./globals.css";
 import Navbar from "@/components/feature/Navbar";
 import Modal from "@/components/layout/modal/Modal";
 import { ClerkProvider } from "@clerk/nextjs";
-import Footer from "@/components/layout/Footer";
 
 const archivo = Archivo({
 	variable: "--font-sans"
@@ -33,7 +32,6 @@ export default function RootLayout({
 				>
 					<Navbar />
 					{children}
-					<Footer />
 					<Modal />
 				</body>
 			</html>

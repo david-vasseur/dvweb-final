@@ -3,6 +3,7 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { SplitText } from "gsap/SplitText";
+import Image from "next/image";
 import { useRef } from "react";
 
 export default function Page() {
@@ -19,9 +20,10 @@ export default function Page() {
     const splitRef = useRef(null);
     const listRef = useRef<HTMLUListElement>(null);
     const ctaFinalRef = useRef(null);
+    const imageRef = useRef(null);
 
     useGSAP(() => {
-        if (!leftRef.current || !rightRef.current || !sectionRef.current || !headerRef.current || !listRef.current) return;
+        if (!leftRef.current || !rightRef.current || !sectionRef.current || !headerRef.current || !listRef.current || !imageRef.current) return;
         const leftSection = leftRef.current.children;
         const listItems = listRef.current.children;
         
@@ -137,6 +139,18 @@ export default function Page() {
         },
         "-=0.2"
         );
+
+        /* Image Animation */
+        gsap.set(imageRef.current, { scale: 0.1 })
+        gsap.fromTo(imageRef.current, 
+            { scale: 0.1 },
+            { scale: 0.8, scrollTrigger: {
+                trigger: featuresSectionRef.current,
+                start: "top bottom",
+                end: "bottom center",
+                scrub: 1.2
+            } }
+        )
         
     }, []);
 
@@ -261,48 +275,50 @@ export default function Page() {
             </section>
             <section
                 ref={featuresSectionRef}
-                className="relative h-svh w-full text-white flex flex-col items-center justify-center px-10"
+                className="relative h-svh w-full text-white flex flex-col items-center justify-center px-10 bg-linear-to-t from-gray-900 to bg-cyan-950"
             >
-            {/* AMORCE */}
-            <h2
-                ref={headlineRef}
-                className="text-5xl md:text-6xl font-bold mb-12 opacity-0"
-            >
-                <span ref={splitRef}>Tout ce que votre site Starter inclut</span>
-            </h2>
+                {/* IMAGE */}
+                <Image ref={imageRef} src={"/images/service1.png"} alt="image cta" fill className="opacity-20 scale-70 grayscale-10" />
+                {/* AMORCE */}
+                <h2
+                    ref={headlineRef}
+                    className="text-5xl md:text-6xl font-bold mb-12 opacity-0"
+                >
+                    <span ref={splitRef}>Tout ce que votre site Starter inclut</span>
+                </h2>
 
-            {/* LISTE */}
-            <ul
-                ref={listRef}
-                className="text-xl space-y-4 max-w-2xl opacity-0"
-            >
-                <li className="flex items-start gap-3">
-                <span className="text-cyan-400 text-2xl">✓</span> Design moderne et responsive
-                </li>
-                <li className="flex items-start gap-3">
-                <span className="text-cyan-400 text-2xl">✓</span> 1 homepage + 3–5 sections essentielles
-                </li>
-                <li className="flex items-start gap-3">
-                <span className="text-cyan-400 text-2xl">✓</span> Optimisation mobile & tablette
-                </li>
-                <li className="flex items-start gap-3">
-                <span className="text-cyan-400 text-2xl">✓</span> Formulaire de contact intégré
-                </li>
-                <li className="flex items-start gap-3">
-                <span className="text-cyan-400 text-2xl">✓</span> SEO technique (balises, structure, vitesse)
-                </li>
-                <li className="flex items-start gap-3">
-                <span className="text-cyan-400 text-2xl">✓</span> Hébergement & conseils techniques
-                </li>
-            </ul>
+                {/* LISTE */}
+                <ul
+                    ref={listRef}
+                    className="text-xl space-y-4 max-w-2xl opacity-0"
+                >
+                    <li className="flex items-start gap-3">
+                    <span className="text-cyan-400 text-2xl">✓</span> Design moderne et responsive
+                    </li>
+                    <li className="flex items-start gap-3">
+                    <span className="text-cyan-400 text-2xl">✓</span> 1 homepage + 3–5 sections essentielles
+                    </li>
+                    <li className="flex items-start gap-3">
+                    <span className="text-cyan-400 text-2xl">✓</span> Optimisation mobile & tablette
+                    </li>
+                    <li className="flex items-start gap-3">
+                    <span className="text-cyan-400 text-2xl">✓</span> Formulaire de contact intégré
+                    </li>
+                    <li className="flex items-start gap-3">
+                    <span className="text-cyan-400 text-2xl">✓</span> SEO technique (balises, structure, vitesse)
+                    </li>
+                    <li className="flex items-start gap-3">
+                    <span className="text-cyan-400 text-2xl">✓</span> Hébergement & conseils techniques
+                    </li>
+                </ul>
 
-            {/* CTA */}
-            <button
-                ref={ctaFinalRef}
-                className="mt-14 px-10 py-4 bg-cyan-400 text-black font-semibold text-lg rounded-xl shadow-xl hover:scale-105 transition-transform opacity-0"
-            >
-                Demander un devis gratuit →
-            </button>
+                {/* CTA */}
+                <button
+                    ref={ctaFinalRef}
+                    className="mt-14 px-10 py-4 bg-cyan-400 text-black font-semibold text-lg rounded-xl shadow-xl hover:scale-105 transition-transform opacity-0"
+                >
+                    Demander un devis gratuit →
+                </button>
             </section>
         </div>
     );

@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
 import { useEffect } from "react";
 import { useDeviceStore } from "./lib/store/useDeviceStore";
+import Footer from "@/components/layout/Footer";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
@@ -29,6 +30,7 @@ const Template = ({ children }: { children: React.ReactNode }) => {
             <div id="page-transition-left" className="min-h-screen w-1/2 bg-cyan-800 fixed z-500 top-0 left-0" />
             <div id="page-transition-right" className="min-h-screen w-1/2 bg-cyan-800 fixed z-500 top-0 right-0" />
             {children}
+            <Footer />
         </div>
     )
 }
