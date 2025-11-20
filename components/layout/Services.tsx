@@ -36,17 +36,28 @@ function Services() {
 
             gsap.set(path, {
                 strokeDasharray: pathLength,
-                strokeDashoffset: pathLength, // ← inversion ici
+                strokeDashoffset: pathLength,
             });
 
-            isMac ? gsap.to(path, {
-                strokeDashoffset: 0, // ← on revient à 0
+            if (isMac) {
+
+            // 🧨 enlever UNIQUEMENT le scrollTrigger du path
+            ScrollTrigger.getAll().forEach((st) => {
+                if (st.trigger === path) st.kill();
+            });
+
+            // 🎬 jouer l’animation simple
+            gsap.to(path, {
+                strokeDashoffset: 0,
                 duration: 1.5,
                 ease: "power2.inOut"
-            })
-            :
+            });
+
+        } else {
+
+            // 🎚 version scroll PC
             gsap.to(path, {
-                strokeDashoffset: 0, // ← on revient à 0
+                strokeDashoffset: 0,
                 scrollTrigger: {
                     trigger: path,
                     start: "top 90%",
@@ -56,6 +67,7 @@ function Services() {
                 ease: "none",
             });
         }
+    }
 
         gsap.fromTo(horizonRef.current, 
             { width: "10%" },
