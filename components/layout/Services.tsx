@@ -119,7 +119,9 @@ function Services() {
         <section id="services" className="relative mx-auto min-h-svh flex flex-col items-center justify-evenly py-24 overflow-hidden">
 
             {/* --- SVG décoratif animé pour desktop --- */}
-            <svg
+            {!isMac &&
+
+                <svg
                 className="absolute z-1 top-0 left-0 w-full h-full pointer-events-none hidden lg:block opacity-40"
                 viewBox="0 0 1920 1080"
                 preserveAspectRatio="none"
@@ -159,6 +161,9 @@ function Services() {
                     fill="none"
                 />
             </svg>
+
+            }
+            
 
             {/* Svg Card */}
             <svg width="0" height="0" className="absolute">
