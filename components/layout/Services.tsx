@@ -119,8 +119,6 @@ function Services() {
         <section id="services" className="relative mx-auto min-h-svh flex flex-col items-center justify-evenly py-24 overflow-hidden">
 
             {/* --- SVG décoratif animé pour desktop --- */}
-            {!isMac &&
-
                 <svg
                 className="absolute z-1 top-0 left-0 w-full h-full pointer-events-none hidden lg:block opacity-40"
                 viewBox="0 0 1920 1080"
@@ -135,8 +133,8 @@ function Services() {
                     <stop offset="100%" stopColor="#0ea5e9" />
                     </linearGradient>
                 </defs>
-
-                <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                {!isMac &&
+                    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
                     <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur" />
                     <feMerge>
                         <feMergeNode in="blur" />
@@ -144,7 +142,8 @@ function Services() {
                         <feMergeNode in="SourceGraphic" />
                     </feMerge>
                 </filter>
-
+                }
+                
                 <path
                     ref={pathRef}
                         d="M 0.00,200.00
@@ -161,8 +160,6 @@ function Services() {
                     fill="none"
                 />
             </svg>
-
-            }
             
 
             {/* Svg Card */}
