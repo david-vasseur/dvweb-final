@@ -205,6 +205,8 @@ function Services() {
                 <span className="text-cyan-300">adaptées à vos besoins</span>
             </h2>
 
+            <h3 className='z-1000 text-5xl text-red-700'>{isMac ? "Je suis sur mac" : "Je suis sur pc"}</h3>
+
             {/* Cartes */}
             <div
                 ref={cardsRef}
