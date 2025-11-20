@@ -51,7 +51,9 @@ function Services() {
             gsap.to(path, {
                 strokeDashoffset: 0,
                 duration: 1.5,
-                ease: "power2.inOut"
+                ease: "power2.inOut",
+                immediateRender: false, // IMPORTANT
+                overwrite: true 
             });
 
         } else {
