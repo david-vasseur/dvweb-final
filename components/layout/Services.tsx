@@ -3,6 +3,7 @@
 import { useMacStore } from '@/app/lib/store/useMacStore';
 import { ReactRef, useGSAP } from '@gsap/react';
 import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SplitText } from 'gsap/SplitText';
 import Image from 'next/image';
 import Link from 'next/link';
