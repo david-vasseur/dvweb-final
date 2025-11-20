@@ -1,5 +1,6 @@
 "use client"
 
+import { useMacStore } from '@/app/lib/store/useMacStore';
 import { ReactRef, useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { SplitText } from 'gsap/SplitText';
@@ -20,6 +21,8 @@ function Services() {
     const horizonRef = useRef(null);
     const pathRef = useRef<SVGPathElement>(null);
 
+    const { isMac } = useMacStore();
+
     useGSAP(() => {
         if (!cardsRef.current || !titleRef.current || !titleCard1Ref.current || !ctaCard1Ref.current || !ctaCard2Ref.current || !ctaCard3Ref.current || !horizonRef.current) return
 
@@ -36,13 +39,19 @@ function Services() {
                 strokeDashoffset: pathLength, // ← inversion ici
             });
 
+            isMac ? gsap.to(path, {
+                strokeDashoffset: 0, // ← on revient à 0
+                duration: 1.5,
+                ease: "power2.inOut"
+            })
+            :
             gsap.to(path, {
                 strokeDashoffset: 0, // ← on revient à 0
                 scrollTrigger: {
-                trigger: path,
-                start: "top 90%",
-                end: "bottom bottom",
-                scrub: 4.5,
+                    trigger: path,
+                    start: "top 90%",
+                    end: "bottom bottom",
+                    scrub: 4,
                 },
                 ease: "none",
             });

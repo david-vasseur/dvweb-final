@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { useDeviceStore } from "./lib/store/useDeviceStore";
 import Footer from "@/components/layout/Footer";
 import { usePathname } from "next/navigation";
+import { useMacStore } from "./lib/store/useMacStore";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
@@ -16,6 +17,7 @@ const Template = ({ children }: { children: React.ReactNode }) => {
     const pathName = usePathname();
 
     const { detectDevice } = useDeviceStore();
+    const { detectMac, isMac } = useMacStore();
 
 	useEffect(() => {
 		const cleanup = detectDevice();
@@ -25,7 +27,12 @@ const Template = ({ children }: { children: React.ReactNode }) => {
     useEffect(() => {
         if (pathName === "/") return
         animatePageIn()
-    }, [pathName])
+    }, [pathName]);
+
+    useEffect(() => {
+        const cleanup = detectMac();
+        return cleanup;
+    }, [detectMac]);
 
     return (
         <div>
