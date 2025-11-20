@@ -40,37 +40,7 @@ function Services() {
                 strokeDashoffset: pathLength,
             });
 
-            if (isMac) {
-                ScrollTrigger.getAll().forEach(st => {
-                        if (st.trigger === path) st.kill();
-                    });
-
-                    // 🛑 2. Faire un tween non lié à ScrollTrigger
-                    const tween = gsap.to(path, {
-                        strokeDashoffset: 0,
-                        duration: 1.5,
-                        ease: "power2.inOut",
-                        immediateRender: false, // IMPORTANT
-                        overwrite: true         // IMPORTANT
-                    });
-
-                    // 🚫 3. Empêcher ScrollTrigger/Lenis de recalculer ce tween
-                    tween.data = "no-st-update";
-
-                    // 🧯 4. Patch global : empêcher ST.update() d'impacter les tweens marqués
-                    const origUpdate = ScrollTrigger.update;
-                    ScrollTrigger.update = () => {
-                        gsap.globalTimeline.getChildren().forEach(t => {
-                            if (t.data === "no-st-update") {
-                                t.paused(true);   // empêche avance/rollback
-                                t.time(t.time()); // force la frame actuelle
-                            }
-                        });
-                        origUpdate();
-                    };
-
-        } else {
-
+            if (!isMac) {
             // 🎚 version scroll PC
             gsap.to(path, {
                 strokeDashoffset: 0,
