@@ -7,6 +7,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SplitText } from 'gsap/SplitText';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import React, { useRef } from 'react'
 
 function Services() {
@@ -23,6 +24,7 @@ function Services() {
     const pathRef = useRef<SVGPathElement>(null);
 
     const { isMac } = useMacStore();
+    const router = useRouter();
 
     useGSAP(() => {
         if (!cardsRef.current || !titleRef.current || !titleCard1Ref.current || !ctaCard1Ref.current || !ctaCard2Ref.current || !ctaCard3Ref.current || !horizonRef.current) return
@@ -205,8 +207,6 @@ function Services() {
                 <span className="text-cyan-300">adaptées à vos besoins</span>
             </h2>
 
-            <h3 className='z-1000 text-5xl text-red-700'>{isMac ? "Je suis sur mac" : "Je suis sur pc"}</h3>
-
             {/* Cartes */}
             <div
                 ref={cardsRef}
@@ -218,6 +218,7 @@ function Services() {
                     onMouseLeave={() => {
                         if (titleCard1Ref.current) gsap.to(titleCard1Ref.current, { y: 0, color: "#fff", duration: 0.2 });
                     }}
+                    onClick={() => router.push('/starter')}
                     className="relative aspect-3/4 p-8 flex flex-col justify-between drop-shadow-[8px_8px_10px_rgba(0,0,0,0.7)] hover:drop-shadow-[12px_12px_30px_rgba(0,0,0,0.5)] transition-all duration-500 group"
                 >
                     <h3 ref={titleCard1Ref} className="absolute top-5 left-1/2 -translate-x-1/2 text-xl 2xl:text-3xl font-semibold text-white mb-4">Starter</h3>

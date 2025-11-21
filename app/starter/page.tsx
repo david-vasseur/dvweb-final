@@ -23,6 +23,10 @@ export default function Page() {
     const listRef = useRef<HTMLUListElement>(null);
     const ctaFinalRef = useRef(null);
     const imageRef = useRef(null);
+    const text1titleRef = useRef<HTMLHeadingElement>(null);
+    const text1UlRef = useRef<HTMLUListElement>(null);
+    const texte1DivRef = useRef<HTMLDivElement>(null);
+    const text1BackRef = useRef<HTMLDivElement>(null);
 
     useGSAP(() => {
         if (!leftRef.current || !rightRef.current || !sectionRef.current || !headerRef.current || !listRef.current || !imageRef.current) return;
@@ -148,6 +152,42 @@ export default function Page() {
                 scrub: 1.2
             } }
         )
+
+        if ( text1titleRef.current && text1UlRef.current?.children && texte1DivRef.current && text1BackRef.current) {
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: texte1DivRef.current,
+                    start: "top 70%",
+                    end: "center center",
+                    scrub: 0.5,
+                    markers: true
+                }
+            });
+
+            // PHASE 1 : entrée du titre
+            tl.fromTo(
+                text1titleRef.current,
+                { opacity: 0, scale: 0.5, y: 150 },
+                { opacity: 1, scale: 1, y: -50, duration: 1 }
+            );
+
+            // PHASE 1 BIS : entrée des UL (en même temps que le titre)
+            tl.fromTo(
+                text1UlRef.current.children,
+                { y: 100, opacity: 0 },
+                { y: 0, opacity: 1, stagger: 0.2, duration: 1 },
+                "+=1.5" // commence en même temps que le titre
+            );
+
+            gsap.to(text1BackRef.current, 
+                {scaleX: .7, scaleY: .5, scrollTrigger: {
+                    trigger: texte1DivRef.current,
+                    start: "top 70%",
+                    end: "center center",
+                    scrub: 0.5,
+                }}
+            )
+        }
         
     }, []);
 
@@ -201,9 +241,9 @@ export default function Page() {
                 <div ref={stickyRef} className="sticky z-500 flex top-0 left-0 h-screen w-full overflow-hidden bg-linear-to-b from-gray-900/90 to-cyan-950">
                     <div ref={leftRef} className="relative flex-1 h-full ">
                           {/* TEXT 1 — Intro / valeur */}
-                        <div className="relative h-svh w-full flex flex-col justify-center items-start px-16 text-white">
-                            <h2 className="text-5xl font-bold mb-6">Les fonctionnalités essentielles</h2>
-                            <ul className="text-xl leading-relaxed space-y-3 max-w-xl">
+                        <div ref={texte1DivRef} className="relative h-svh w-full flex flex-col justify-center items-start px-16 text-white">
+                            <h2 ref={text1titleRef} className="text-5xl text-cyan-500 font-bold mb-6">Les fonctionnalités essentielles</h2>
+                            <ul ref={text1UlRef} className="text-xl leading-relaxed space-y-3 max-w-xl">
                                 <li>• 1 homepage moderne & orientée conversion</li>
                                 <li>• 3 à 5 sections essentielles (services, contact, présentation…)</li>
                                 <li>• Formulaire de contact intégré</li>
@@ -241,7 +281,7 @@ export default function Page() {
                             <img 
                                 src="/images/focus.webp" 
                                 alt="Mockup site starter"
-                                className="w-[70%] rounded-2xl shadow-2xl"
+                                className="w-[80%] rounded-2xl shadow-2xl"
                             />
                         </div>
 
@@ -264,10 +304,11 @@ export default function Page() {
 
                         {/* IMAGE 1 — Showcase final */}
                         <div className="relative h-svh w-full flex justify-center items-center">
+                            <div ref={text1BackRef} className="absolute -z-1 inset-0 bg-zinc-50 blur-3xl scale-30" />
                             <img 
                                 src="/images/essentials.webp" 
                                 alt="Exemple site final"
-                                className="w-[75%] rounded-2xl shadow-2xl"
+                                className="w-[80%] rounded-2xl bg-cyan-950/95"
                             />
                         </div>
                     </div>
@@ -278,15 +319,17 @@ export default function Page() {
                 className="relative h-svh w-full text-white flex flex-col items-center justify-center px-10 bg-linear-to-t from-gray-900 to bg-cyan-950"
             >
                 {/* IMAGE */}
-                <Image ref={imageRef} src={"/images/service1.png"} alt="image cta" fill className="opacity-20 scale-70 grayscale-10" />
+                <Image ref={imageRef} src={"/images/final-service1.webp"} alt="image cta" fill className="opacity-20 scale-70 grayscale-10 z-0" />
                 {/* AMORCE */}
-                <h2
+                {/* <h2
                     ref={headlineRef}
-                    className="text-5xl md:text-6xl font-bold mb-12 opacity-1"
+                    className="z-1000 text-5xl md:text-6xl font-bold mb-12 opacity-1"
                 >
-                    <span ref={splitRef}>Tout ce que votre site Starter inclut</span>
-                </h2>
+                    <span >Tout ce que votre site Starter inclut</span>
+                </h2> */}
 
+
+                <h2 ref={splitRef} className=" text-cyan-500 text-5xl md:text-6xl font-bold mb-12">Tout ce que votre site Starter inclut</h2>
                 {/* LISTE */}
                 <ul
                     ref={listRef}
