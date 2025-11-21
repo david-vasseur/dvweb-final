@@ -6,6 +6,10 @@
 	--font-sans: var(--font-sans);
 }
 
+html {
+	overflow-y: scroll;
+}
+
 /* --- CONFIG LENIS --- */
 
 html.lenis,

@@ -30,7 +30,7 @@ export default function RootLayout({
 			<html lang="fr">
 				<ReactLenis root>
 					<body
-						className={`${archivo.className} antialiased overflow-x-hidden w-svw`}
+						className={`${archivo.className} antialiased overflow-x-hidden`}
 					>
 						<Navbar />
 						{children}

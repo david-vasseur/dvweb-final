@@ -160,7 +160,6 @@ export default function Page() {
                     start: "top 70%",
                     end: "center center",
                     scrub: 0.5,
-                    markers: true
                 }
             });
 

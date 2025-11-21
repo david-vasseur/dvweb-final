@@ -17,10 +17,22 @@ export default function MessageSection() {
         gsap.from(split.chars, {
             opacity: 0,
             y: 20,
-            stagger: 0.02,
-            duration: 0.6,
+            stagger: 0.1,
             ease: "power2.out",
+            scrollTrigger: {
+                trigger: ".message-clear",
+                start: "top 90%",
+                end: "bottom center",
+                scrub: 1,
+            }
         });
+
+        gsap.to(".message-clear", { opacity: 0.4, scrollTrigger: {
+            trigger: ".message-clear",
+                start: "top 90%",
+                end: "bottom center",
+                scrub: 0.2,
+        } })
 
         const tl = gsap.timeline({
             scrollTrigger: {
@@ -29,11 +41,14 @@ export default function MessageSection() {
                 end: "+=2000",
                 scrub: 1,
                 pin: true,
+                pinType: "fixed", // Force le type de pin
+                pinSpacing: true,
+                anticipatePin: 1
             },
         });
 
         // baseline fade
-        tl.to(".message-clear", { opacity: 0.4, duration: 0.5 }, 0);
+        // tl.to(".message-clear", { opacity: 0.4, duration: 0.1 }, 0);
 
         // p1 → apparition avec glow + scale
         tl.to(".p1", { 
@@ -134,7 +149,11 @@ export default function MessageSection() {
     return (
         <section
             ref={container}
-            className="h-screen flex items-center justify-center relative bg-gray-950 overflow-hidden"
+            className="h-screen w-full flex items-center justify-center relative bg-gray-950 overflow-hidden"
+            style={{ 
+                width: 'calc(100vw - var(--scrollbar-width, 0px))',
+                maxWidth: '100%'
+            }}
         >
             {/* Grille de fond */}
             <div className="absolute opacity-10 inset-0 bg-[linear-gradient(rgba(6,182,212,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(6,182,212,0.02)_1px,transparent_1px)] bg-[size:64px_64px]" />
@@ -156,9 +175,15 @@ export default function MessageSection() {
                     ref={titleRef}
                     className="message-clear text-4xl md:text-6xl max-w-7xl font-extrabold leading-snug opacity-0 text-white"
                 >
-                    J'aide les <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text">entreprises</span> et <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text">indépendants</span><br/>
-                    à créer des <span className="bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text">expériences web</span><br/>
-                    <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-500 bg-clip-text">performantes</span> et <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-500 bg-clip-text">esthétiques</span>.
+                    <span className="text-red-400">Captez !</span>
+                    {' '}
+                    <span className="text-cyan-500"> Développez !</span>
+                    {' '}
+                    <span className="text-purple-500">Convertissez !</span>
+                    <br/>
+                    Votre site web au service de<br/> votre
+                    <br/>
+                    <span className=" text-cyan-500">Business</span>
                 </h2>
 
                 {/* OVERLAY ANIMATIONS */}
@@ -171,7 +196,11 @@ export default function MessageSection() {
 
                     {/* P2 - Bénéfice */}
                     <p className="p p2 absolute inset-0 opacity-0 translate-y-6 scale-95 text-lg md:text-2xl text-gray-200 leading-relaxed">
-                        Des <span className="text-cyan-400 font-bold">résultats mesurables</span>. Un site optimisé <span className="text-cyan-400 font-semibold">améliore vos conversions </span>
+                        <strong className="text-xl md:text-3xl p-2 bg-linear-to-r from-zinc-400 to-zinc-500">
+                            Des <span className="text-cyan-400 font-extrabbold">résultats mesurables.</span>
+                        </strong>
+                        <br/>
+                        Un site optimisé <span className="text-cyan-400 font-semibold">améliore vos conversions </span>
                         et renforce votre <span className="text-cyan-400 font-bold">crédibilité</span>.
                     </p>
 
