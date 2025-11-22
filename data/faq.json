@@ -1,0 +1,22 @@
+[
+  {
+    "question": "Pourquoi choisir une agence web plutôt qu'un freelance pour la création de mon site ?",
+    "answer": "Une agence web offre une équipe complète (UX, design, développement, SEO) capable de gérer un projet dans son ensemble. Cela garantit une meilleure qualité, une maintenance sécurisée, des délais respectés et un site pensé pour convertir dès le lancement."
+  },
+  {
+    "question": "Comment un site optimisé peut-il augmenter mes demandes de contact ou mes ventes ?",
+    "answer": "Nous travaillons sur l’ergonomie, la vitesse du site, la hiérarchisation des contenus, des appels à l’action stratégiques et un parcours utilisateur clair. Ces optimisations réduisent la friction et augmentent significativement le taux de conversion."
+  },
+  {
+    "question": "En combien de temps puis-je voir des résultats après la création ou la refonte de mon site ?",
+    "answer": "Les résultats en termes de conversion peuvent être immédiats, surtout si votre ancien site n’était pas optimisé. Pour le SEO, il faut en moyenne 8 à 12 semaines pour observer une progression, en fonction de la concurrence et des optimisations réalisées."
+  },
+  {
+    "question": "Quelles technologies utilisez-vous pour garantir la performance et la sécurité de mon site ?",
+    "answer": "Nous utilisons des technologies modernes et fiables : CMS sécurisé, hébergement optimisé, CDN, protocoles HTTPS, mises à jour automatisées et mesures de protection anti-intrusion. Ces choix garantissent rapidité, stabilité et meilleure visibilité SEO."
+  },
+  {
+    "question": "Comment assurez-vous que mon site soit optimisé pour le référencement dès le lancement ?",
+    "answer": "Nous intégrons une structure technique SEO-friendly, une optimisation des balises, un maillage interne intelligent, un contenu performant, la compression des médias et un paramétrage avancé de la Search Console. Dès sa mise en ligne, votre site est prêt à être indexé et à performer."
+  }
+]
