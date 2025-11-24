@@ -159,14 +159,14 @@ export default function MessageSection() {
             <div className="absolute opacity-10 inset-0 bg-[linear-gradient(rgba(6,182,212,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(6,182,212,0.02)_1px,transparent_1px)] bg-[size:64px_64px]" />
 
             {/* Glow de fond pour les paragraphes */}
-            <div className="glow-p1 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-red-500/30 rounded-full blur-[120px] opacity-0 pointer-events-none" />
-            <div className="glow-p2 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-cyan-500/40 rounded-full blur-[120px] opacity-0 pointer-events-none" />
-            <div className="glow-p3 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-500/40 rounded-full blur-[120px] opacity-0 pointer-events-none" />
+            <div className="glow-p1 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-cyan-500/30 rounded-full blur-[120px] opacity-0 pointer-events-none" />
+            <div className="glow-p2 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-white/30 rounded-full blur-[120px] opacity-0 pointer-events-none" />
+            <div className="glow-p3 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-cyan-500/40 rounded-full blur-[120px] opacity-0 pointer-events-none" />
 
             {/* Glow final du titre */}
             <div 
                 ref={glowRef}
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-cyan-500/50 rounded-full blur-[150px] opacity-0 pointer-events-none"
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-cyan-500/5 rounded-full blur-[150px] opacity-0 pointer-events-none"
             />
 
             <div className="relative w-[70%] max-w-[900px] text-center z-10">
@@ -175,11 +175,11 @@ export default function MessageSection() {
                     ref={titleRef}
                     className="message-clear text-4xl md:text-6xl max-w-7xl font-extrabold leading-snug opacity-0 text-white"
                 >
-                    <span className="text-red-400">Captez !</span>
+                    <span className="text-cyan-500">Captez !</span>
                     {' '}
                     <span className="text-cyan-500"> Développez !</span>
                     {' '}
-                    <span className="text-purple-500">Convertissez !</span>
+                    <span className="text-cyan-500">Convertissez !</span>
                     <br/>
                     Votre site web au service de<br/> votre
                     <br/>
@@ -190,24 +190,24 @@ export default function MessageSection() {
                 <div className="relative h-[180px] mt-12">
                     {/* P1 - Problème */}
                     <p className="p p1 absolute inset-0 opacity-0 translate-y-6 scale-95 text-lg md:text-2xl text-gray-200 leading-relaxed">
-                        Vous <span className="text-red-400 font-bold">perdez des clients</span> sans le savoir. Une <span className="text-red-400 font-semibold">mauvaise expérience </span> ou un
-                        manque de clarté peut <span className="text-red-400 font-bold">faire fuir</span> vos prospects.
+                        Vous <span className="text-cyan-400 font-bold">perdez des clients</span> sans le savoir. Une <span className="text-cyan-400 font-semibold">mauvaise expérience </span> ou un
+                        manque de clarté peut <span className="text-cyan-400 font-bold">faire fuir</span> vos prospects.
                     </p>
 
                     {/* P2 - Bénéfice */}
                     <p className="p p2 absolute inset-0 opacity-0 translate-y-6 scale-95 text-lg md:text-2xl text-gray-200 leading-relaxed">
                         <strong className="text-xl md:text-3xl p-2 bg-linear-to-r from-zinc-400 to-zinc-500">
-                            Des <span className="text-cyan-400 font-extrabbold">résultats mesurables.</span>
+                            Des <span className="text-cyan-500 font-extrabbold">résultats mesurables.</span>
                         </strong>
                         <br/>
-                        Un site optimisé <span className="text-cyan-400 font-semibold">améliore vos conversions </span>
-                        et renforce votre <span className="text-cyan-400 font-bold">crédibilité</span>.
+                        Un site optimisé <span className="text-cyan-500 font-semibold">améliore vos conversions </span>
+                        et renforce votre <span className="text-cyan-500 font-bold">crédibilité</span>.
                     </p>
 
                     {/* P3 - Transformation */}
                     <p className="p p3 absolute inset-0 opacity-0 translate-y-6 scale-95 text-lg md:text-2xl text-gray-200 leading-relaxed">
-                        Une <span className="text-purple-400 font-bold">expérience qui démarque</span>. Votre site devient un <span className="text-purple-400 font-semibold">atout moderne </span>
-                        qui <span className="text-purple-400 font-bold">capte et retient</span> l'attention.
+                        Une <span className="text-cyan-600 font-bold">expérience qui démarque</span>. Votre site devient un <span className="text-cyan-600 font-semibold">atout moderne </span>
+                        qui <span className="text-cyan-600 font-bold">capte et retient</span> l'attention.
                     </p>
                 </div>
 
