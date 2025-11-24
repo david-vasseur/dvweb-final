@@ -7,6 +7,7 @@ import { ArrowRight } from 'lucide-react';
 import { useRef } from 'react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
+import { useDeviceStore } from '@/app/lib/store/useDeviceStore';
 
 function FAQ() {
 
@@ -14,13 +15,14 @@ function FAQ() {
     const containerRef = useRef<HTMLDivElement | null>(null);
     const wrapperRef= useRef<HTMLDivElement>(null);
     const ctaRef= useRef<HTMLDivElement>(null);
+    const { isMobile } = useDeviceStore();
 
 useGSAP(() => {
        
     const master = gsap.timeline({
         scrollTrigger: {
             trigger: wrapperRef.current,
-            start: "top 60%",
+            start: `${isMobile ? "top 40%" : "top 60%"}`,
             end: () => "+=" + window.innerHeight * 0.9,
             scrub: 1,
             // pin: true,
