@@ -20,8 +20,8 @@ useGSAP(() => {
     const master = gsap.timeline({
         scrollTrigger: {
             trigger: wrapperRef.current,
-            start: "top 70%",
-            end: "+=1000",
+            start: "top 60%",
+            end: () => "+=" + window.innerHeight * 0.9,
             scrub: 1,
             // pin: true,
             // pinSpacing: false
@@ -61,7 +61,7 @@ useGSAP(() => {
                     {faq.map((card, index) => (
                         <CardFaq key={index} ref={el => { cardRefs.current[index] = el; }} question={card.question} answer={card.answer} index={index} />
                     ))}
-                    <div ref={ctaRef} id="FAQ cta" className="relative z-15 py-15 flex flex-col items-center justify-center gap-15 bg-gray-900 min-h-[30vh]">
+                    <div ref={ctaRef} id="FAQ cta" className="relative z-15 py-15 flex flex-col items-center justify-center gap-15 bg-gray-900 h-[30vh]">
                         <h3 className="text-6xl xl:text-8xl text-center font-black text-transparent bg-linear-to-r from-cyan-400 to-cyan-600 bg-clip-text">Pret à passer à l'action ?</h3>
                         <Button
                             size="lg"
