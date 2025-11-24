@@ -16,9 +16,9 @@ const CardFaq = forwardRef<HTMLDivElement, { question: string; answer: string; i
                     className={`relative will-change-transform w-full h-full p-2 xl:p-[2em] flex gap-[4em]`}
                     style={{ backgroundColor: colors[index] }}
                 >
-                    <div id="card-content" className="flex-3 text-center">
-                        <h3 className="text-xl xl:text-5xl font-black mb-10 xl:mb-20">{question}</h3>
-                        <p className="text-sm xl:text-2xl font-semibold text-gray-800">{answer}</p>
+                    <div id="card-content" className="flex-3 flex flex-col text-center">
+                        <h3 className="flex-1 text-xl 2xl:text-5xl font-black">{question}</h3>
+                        <p className="flex-1 text-sm md:text-base 2xl:text-2xl font-semibold text-gray-800">{answer}</p>
                     </div>
 
                     <div
