@@ -51,6 +51,28 @@ useGSAP(() => {
     )
     .to(cardRefs.current[4], { filter: "grayscale(100%)", duration: 1 }, "<")
 
+    cardRefs.current.forEach((card, i) => {
+        if (card) {
+            const img = card.querySelector('#card-img'); 
+
+            const offset = i * 15;
+
+            gsap.fromTo(
+                img,
+                { xPercent: 200 },
+                {
+                    xPercent: 0,
+                    scrollTrigger: {
+                        trigger: card,
+                        start: `top ${90 + offset}%`,  
+                        end:   `bottom ${90 + offset}%`,
+                        scrub: 1,
+                    }
+                }
+            );
+        }        
+    });
+
     }, []);
 
     return (
