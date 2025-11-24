@@ -18,7 +18,7 @@ const CardFaq = forwardRef<HTMLDivElement, { question: string; answer: string; i
                 >
                     <div id="card-content" className="flex-3 flex flex-col text-center">
                         <h3 className="flex-1 text-xl 2xl:text-5xl font-black">{question}</h3>
-                        <p className="flex-1 text-sm md:text-base 2xl:text-2xl font-semibold text-gray-800">{answer}</p>
+                        <p className="pt-2 flex-1 text-sm md:text-base 2xl:text-2xl font-semibold text-gray-800">{answer}</p>
                     </div>
 
                     <div
