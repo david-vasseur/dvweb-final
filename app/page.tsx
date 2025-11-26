@@ -1,8 +1,8 @@
 import Header from "@/components/layout/Header";
 import Services from "@/components/layout/Services";
-import NextTest from "@/components/layout/NextTest";
 import MessageSection from "@/components/layout/Message3";
 import FAQ from "@/components/layout/FAQ";
+import Portfolio from "@/components/layout/Portfolio";
 
 export default function Home() {
 
@@ -13,7 +13,7 @@ export default function Home() {
 			<Header />
 			<MessageSection />
 			<Services />
-			<NextTest />
+			<Portfolio />
 			<FAQ />
 		</main>
 	);
