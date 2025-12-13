@@ -1,16 +1,18 @@
-import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
-import { NextResponse } from 'next/server';
+import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server'
+import { NextResponse } from 'next/server'
 
+const isProtectedRoute = createRouteMatcher(['/dashboard(.*)'])
 
+export default clerkMiddleware(async (auth, request) => {
+  const { userId } = await auth()
 
-export default clerkMiddleware(
-  (auth, req) => {
-    console.log('=========================')
-    console.log('Request Headers')
-    console.log('x-forwarded-host', req.headers.get('x-forwarded-host'))
-    console.log('x-forwarded-proto', req.headers.get('x-forwarded-proto'))
-    console.log('=========================')
-  },
-  { debug: true },
-)
+  if (isProtectedRoute(request) && !userId) {
+    return NextResponse.redirect(new URL('/', request.url))
+  }
 
+  return NextResponse.next()
+})
+
+export const config = {
+  matcher: ['/dashboard(.*)', '/api/(.*)'],
+}
