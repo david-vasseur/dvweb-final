@@ -38,7 +38,7 @@ export default function MessageSection() {
             scrollTrigger: {
                 trigger: container.current,
                 start: "top top",
-                end: "+=2000",
+                end: "+=2500",
                 scrub: 1,
                 pin: true,
                 pinType: "fixed", // Force le type de pin
@@ -57,6 +57,7 @@ export default function MessageSection() {
             scale: 1,
             duration: 0.6 
         })
+        .to(".message-clear", { scale: 0, opacity: 0 }, "<")
         .to(".glow-p1", {
             opacity: 0.6,
             scale: 1.5,
@@ -126,9 +127,10 @@ export default function MessageSection() {
         }, "<");
 
         // Impact final avec glow massif
-        tl.to(".message-clear", {
+        tl.to(".message-final", {
             opacity: 1,
             scale: 1.4,
+            yPercent: 35,
             duration: 1.2,
             ease: "power3.out",
         })
@@ -181,36 +183,59 @@ export default function MessageSection() {
                     {' '}
                     <span className="text-cyan-500">Convertissez !</span>
                     <br/>
-                    Votre site web au service de<br/> votre
+                    {/* Votre site web au service de<br/> votre
+                    <br/>
+                    <span className=" text-cyan-500">Business</span> */}
+                </h2>
+                <span className="message-final text-4xl md:text-6xl max-w-7xl font-extrabold leading-snug opacity-0 scale-0 text-white">
+                    Votre site web au service de
+                    <br/> 
+                    votre
                     <br/>
                     <span className=" text-cyan-500">Business</span>
-                </h2>
+                </span>
 
                 {/* OVERLAY ANIMATIONS */}
-                <div className="relative h-[180px] mt-12">
-                    {/* P1 - Problème */}
-                    <p className="p p1 absolute inset-0 opacity-0 translate-y-6 scale-95 text-lg md:text-2xl text-gray-200 leading-relaxed">
-                        Vous <span className="text-cyan-400 font-bold">perdez des clients</span> sans le savoir. Une <span className="text-cyan-400 font-semibold">mauvaise expérience </span> ou un
-                        manque de clarté peut <span className="text-cyan-400 font-bold">faire fuir</span> vos prospects.
-                    </p>
+                <div className="relative h-[280px] -translate-y-[50%] mt-12">
+                    {/* B1 - Un site qui convertit */}
+                    <div className="p p1 absolute inset-0 opacity-0 translate-y-6 scale-95 text-lg md:text-2xl text-gray-200 leading-relaxed">
+                        <h3 className="text-cyan-400 font-extrabold mb-8">
+                            Transformez vos visiteurs en clients.
+                        </h3>
+                        <p>
+                            Un design clair et optimisé améliore 
+                            immédiatement vos <span className="text-cyan-400 font-semibold">taux de conversion</span> 
+                            et guide vos utilisateurs vers l’action 
+                            avec plus d’<strong className="font-bold text-cyan-400">efficacité</strong>.
+                        </p>
+                    </div>
 
-                    {/* P2 - Bénéfice */}
-                    <p className="p p2 absolute inset-0 opacity-0 translate-y-6 scale-95 text-lg md:text-2xl text-gray-200 leading-relaxed">
-                        <strong className="text-xl md:text-3xl p-2 bg-linear-to-r from-zinc-400 to-zinc-500">
-                            Des <span className="text-cyan-500 font-extrabbold">résultats mesurables.</span>
-                        </strong>
-                        <br/>
-                        Un site optimisé <span className="text-cyan-500 font-semibold">améliore vos conversions </span>
-                        et renforce votre <span className="text-cyan-500 font-bold">crédibilité</span>.
-                    </p>
+                    {/* B2 - Une image professionnelle forte */}
+                    <div className="p p2 absolute inset-0 opacity-0 translate-y-6 scale-95 text-lg md:text-2xl text-gray-200 leading-relaxed">
+                        <h3 className="text-cyan-500 font-extrabold mb-8">
+                            Une image qui inspire confiance.
+                        </h3>
+                        <p>
+                            Un site moderne renforce votre 
+                            <strong className="font-bold text-cyan-500">crédibilité</strong> 
+                            et donne à votre marque une présence en ligne 
+                            <span className="text-cyan-500 font-semibold">solide et professionnelle</span>.
+                        </p>
+                    </div>
 
-                    {/* P3 - Transformation */}
-                    <p className="p p3 absolute inset-0 opacity-0 translate-y-6 scale-95 text-lg md:text-2xl text-gray-200 leading-relaxed">
-                        Une <span className="text-cyan-600 font-bold">expérience qui démarque</span>. Votre site devient un <span className="text-cyan-600 font-semibold">atout moderne </span>
-                        qui <span className="text-cyan-600 font-bold">capte et retient</span> l'attention.
-                    </p>
+                    {/* B3 - Une expérience utilisateur fluide */}
+                    <div className="p p3 absolute inset-0 opacity-0 translate-y-6 scale-95 text-lg md:text-2xl text-gray-200 leading-relaxed">
+                        <h3 className="text-cyan-600 font-extrabold mb-8">
+                            Une navigation simple qui retient vos visiteurs.
+                        </h3>
+                        <p>
+                            Une expérience intuitive réduit les frictions, 
+                            augmente le <span className="text-cyan-600 font-semibold">temps passé sur votre site</span> 
+                            et aide vos visiteurs à trouver rapidement ce qu’ils recherchent, 
+                            ce qui booste votre <strong className="text-cyan-600 font-bold">engagement</strong>.
+                        </p>
+                    </div>
                 </div>
-
                 {/* Particules décoratives */}
                 <div className="absolute -top-10 -right-10 w-20 h-20 bg-cyan-500/20 rounded-full blur-3xl animate-pulse" />
                 <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-purple-500/20 rounded-full blur-3xl animate-pulse delay-700" />

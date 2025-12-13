@@ -232,7 +232,7 @@ function Navbar() {
                                     Services
                                 </Link>
                                 <Link
-                                    href="#"
+                                    href="#portfolio"
                                     className="relative -translate-y-4 text-zinc-100 hover:text-zinc-400 transition-colors duration-200
                                                     after:absolute after:left-0 after:-bottom-1 after:w-full after:h-1 after:bg-linear-to-r after:from-cyan-400 after:via-blue-400 after:to-cyan-300
                                                     after:scale-x-0 after:origin-left hover:after:scale-x-100
@@ -250,7 +250,7 @@ function Navbar() {
                                     Contact
                                 </Link>
                                 <Link
-                                    href="#"
+                                    href="#faq"
                                     className="relative -translate-y-4 text-zinc-100 hover:text-zinc-400 transition-colors duration-200
                                                     after:absolute after:left-0 after:-bottom-1 after:w-full after:h-1 after:bg-linear-to-r after:from-cyan-400 after:via-blue-400 after:to-cyan-300
                                                     after:scale-x-0 after:origin-left hover:after:scale-x-100

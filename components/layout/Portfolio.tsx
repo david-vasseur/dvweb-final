@@ -2,6 +2,7 @@
 
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import Image from "next/image";
 import { useRef } from "react"
 
 function Portfolio() {
@@ -137,16 +138,22 @@ function Portfolio() {
     
 
     return (
-        <section ref={sectionRef} className="h-svh w-full overflow-hidden flex flex-col pt-20 xl:pt-5">
+        <section id="portfolio" ref={sectionRef} className="h-svh w-full overflow-hidden flex flex-col pt-20 xl:pt-5">
             <div className="flex-2 text-center font-black flex items-center justify-center">
-                <h2 className="text-3xl 2xl:text-5xl md:text-6xl">Lorem ipsum dolor sit amet.</h2>
+                <h2 className="text-3xl 2xl:text-5xl md:text-6xl">Des examples de projet</h2>
             </div>
             <div className="h-[85%] flex">
                 <div ref={el => {leftRef.current[0] = el}} className="flex-1 bg-green-400 hidden xl:flex"></div>
                 <div className="w-full xl:w-[70%] overflow-hidden relative perspective-midrange transform-3d">
                     <div ref={el => {cardsRef.current[0] = el}} className="absolute w-[85%] h-[85%] rounded-lg bg-red-400 bottom-2 left-1/2 -translate-z-20 -translate-x-1/2 -translate-y-20 origin-center flex items-center justify-center font-black text-4xl">CARD3</div>
                     <div ref={el => {cardsRef.current[1] = el}} className="absolute w-[85%] h-[85%] rounded-lg bg-green-400 bottom-2 left-1/2 -translate-z-15 -translate-x-1/2 -translate-y-10 origin-center flex items-center justify-center font-black text-4xl">CARD2</div>
-                    <div ref={el => {cardsRef.current[2] = el}} className="absolute w-[85%] h-[85%] rounded-lg bg-blue-400 bottom-2 left-1/2 -translate-z-10 -translate-x-1/2 origin-center flex items-center justify-center font-black text-4xl">CARD1</div>
+                    <div ref={el => {cardsRef.current[2] = el}} className="absolute w-[85%] h-[85%] rounded-lg bg-blue-400 bottom-2 left-1/2 -translate-z-10 -translate-x-1/2 origin-center flex flex-col items-center justify-center font-black text-4xl">
+                        <Image fill src={"/images/portfolio/logo_daikoomyo.jpeg"} alt="logo daikoomyo" className="object-cover rounded-lg" />
+                        <div className="flex-2 w-full h-2/3 relative overflow-hidden rounded-t-lg">
+                            
+                        </div>
+                        <div className="flex-1 h-1/3"></div>
+                    </div>
                 </div>
                 <div ref={el => {leftRef.current[1] = el}} className="flex-1 bg-blue-400 hidden xl:flex"></div>
             </div>
