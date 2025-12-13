@@ -11,6 +11,6 @@ export default clerkMiddleware(
     console.log('x-forwarded-proto', req.headers.get('x-forwarded-proto'))
     console.log('=========================')
   },
-  { debug: debugStatus },
+  { debug: true },
 )
 
