@@ -3,5 +3,7 @@ import { NextResponse } from 'next/server';
 
 
 
-export default clerkMiddleware()
+export default clerkMiddleware({
+  authorizedParties: ['https://dvweb-agency.fr'],
+})
 
