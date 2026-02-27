@@ -32,30 +32,30 @@ export const SignInForm = () => {
             
             console.log(value);
 
-            try {
-                const result = await signIn?.create({
-                    identifier: value.userName, 
-                    password: value.password
-                })
+            // try {
+            //     const result = await signIn?.create({
+            //         identifier: value.userName, 
+            //         password: value.password
+            //     })
 
-                if (result?.status === "complete") {
-                    openModal('Connexion reussi');
-                    window.location.href= "/dashboard";
-                } 
+            //     if (result?.status === "complete") {
+            //         openModal('Connexion reussi');
+            //         window.location.href= "/dashboard";
+            //     } 
 
-                if (result?.status === "needs_second_factor") {
-                    setStep("otp")
-                }
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            } catch (error: any) {
-                if (error.errors && error.errors[0]?.longMessage) {
-                    openModal("Identifiant ou Mot de passe incorrect");
-                } else if (error.message) {
-                    openModal("Identifiant ou Mot de passe incorrect");
-                } else {
-                    openModal("Identifiant ou Mot de passe incorrect");
-                }
-            }
+            //     if (result?.status === "needs_second_factor") {
+            //         setStep("otp")
+            //     }
+            //     // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            // } catch (error: any) {
+            //     if (error.errors && error.errors[0]?.longMessage) {
+            //         openModal("Identifiant ou Mot de passe incorrect");
+            //     } else if (error.message) {
+            //         openModal("Identifiant ou Mot de passe incorrect");
+            //     } else {
+            //         openModal("Identifiant ou Mot de passe incorrect");
+            //     }
+            // }
         },
     });
 
