@@ -14,7 +14,7 @@ export default function Home() {
 			<Header />
 			<MessageSection />
 			<Services />
-			<NextTest />
+			{/* <NextTest /> */}
 			<Portfolio />
 			<FAQ />
 		</main>

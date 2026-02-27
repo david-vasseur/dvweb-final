@@ -42,6 +42,10 @@ export const SignInForm = () => {
                     openModal('Connexion reussi');
                     window.location.href= "/dashboard";
                 } 
+
+                if (result?.status === "needs_second_factor") {
+                    setStep("otp")
+                }
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
             } catch (error: any) {
                 if (error.errors && error.errors[0]?.longMessage) {

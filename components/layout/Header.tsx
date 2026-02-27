@@ -160,7 +160,7 @@ function Header() {
     return (
         <header
             ref={heroRef}
-            className="h-svh w-svw flex  items-end bg-[url('/images/fond1.jpg')] bg-no-repeat bg-cover justify-center relative overflow-hidden px-6"
+            className="h-svh w-svw flex  items-end bg-[url('/images/hero-test.jpeg')] bg-no-repeat bg-cover justify-center relative overflow-hidden px-6"
         >
             <div ref={circleRef} className="absolute z-10 w-full h-screen instet-0 bg-radial from-5% to-40% from-black/10 to-black pointer-events-none" />
             <div className="absolute inset-0 bg-linear-to-t from-gray-900 via-cyan-500/50 to-cyan-500/5" />

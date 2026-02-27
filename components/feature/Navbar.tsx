@@ -196,7 +196,7 @@ function Navbar() {
                     </>
                 ) : (
                         <div
-                            className={`relative w-[50%] h-18 2xl:h-24 transition-all duration-500 ${hovered ? "translate-y-0" : "2xl:-translate-y-16 -translate-y-12"}`}
+                            className={`relative w-[50%] h-18 2xl:h-24 transition-all duration-500 ${hovered ? "-translate-y-1" : "2xl:-translate-y-16 -translate-y-12"}`}
                             onMouseEnter={() => setHovered(true)}
                             onMouseLeave={() => setHovered(false)}
                             style={{

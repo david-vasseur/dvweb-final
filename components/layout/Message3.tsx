@@ -1,18 +1,38 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { SplitText } from "gsap/SplitText";
 import { useGSAP } from "@gsap/react";
+import Scene from "../3d/Scene";
+import { Laptop } from "../3d/Laptop";
+import * as THREE from "three";
 
 
 export default function MessageSection() {
     const container = useRef(null);
     const glowRef = useRef(null);
     const titleRef = useRef(null);
+    const laptopRef = useRef<THREE.Group>(null);
+
+    useEffect(() => {
+        if (!laptopRef.current) return;
+        console.log(laptopRef.current);
+        
+        const tl = gsap.timeline();
+
+        tl.to(laptopRef.current.position, {
+            x: 20,       // distance visible
+            duration: 2,
+            repeat: -1,
+            yoyo: true,
+            ease: "power1.inOut"
+        });
+    }, []);
 
     useGSAP(() => {
         const split = new SplitText(".message-clear", { type: "chars" });
+        
 
         gsap.from(split.chars, {
             opacity: 0,
@@ -157,21 +177,50 @@ export default function MessageSection() {
                 maxWidth: '100%'
             }}
         >
+            {/* 3D Background */}
+            <Scene onReady={() => {
+                const waitForLaptop = () => {
+                    if (!laptopRef.current) {
+                        requestAnimationFrame(waitForLaptop);
+                        return;
+                    }
+
+                    gsap.to(laptopRef.current.position, {
+                        x: 4,
+                        y:2,
+                        duration: 2,
+                        repeat: -1,
+                        yoyo: true,
+                        ease: "power1.inOut"
+                    });
+
+                    gsap.to(laptopRef.current.rotation, {
+                        z: -0.8,
+                        duration: 4,
+                        ease: "power1.inOut"
+                    });
+                };
+
+                waitForLaptop();
+            }}>
+                <Laptop ref={laptopRef} />
+            </Scene>
+            
             {/* Grille de fond */}
-            <div className="absolute opacity-10 inset-0 bg-[linear-gradient(rgba(6,182,212,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(6,182,212,0.02)_1px,transparent_1px)] bg-[size:64px_64px]" />
+            <div className="absolute opacity-10 inset-0 bg-[linear-gradient(rgba(6,182,212,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(6,182,212,0.02)_1px,transparent_1px)] bg-size-[64px_64px]" />
 
             {/* Glow de fond pour les paragraphes */}
-            <div className="glow-p1 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-cyan-500/30 rounded-full blur-[120px] opacity-0 pointer-events-none" />
-            <div className="glow-p2 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-white/30 rounded-full blur-[120px] opacity-0 pointer-events-none" />
-            <div className="glow-p3 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-cyan-500/40 rounded-full blur-[120px] opacity-0 pointer-events-none" />
+            <div className="glow-p1 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-150 h-150 bg-cyan-500/30 rounded-full blur-[120px] opacity-0 pointer-events-none" />
+            <div className="glow-p2 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-150 h-150 bg-white/30 rounded-full blur-[120px] opacity-0 pointer-events-none" />
+            <div className="glow-p3 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-150 h-150 bg-cyan-500/40 rounded-full blur-[120px] opacity-0 pointer-events-none" />
 
             {/* Glow final du titre */}
             <div 
                 ref={glowRef}
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-cyan-500/5 rounded-full blur-[150px] opacity-0 pointer-events-none"
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-200 h-200 bg-cyan-500/5 rounded-full blur-[150px] opacity-0 pointer-events-none"
             />
 
-            <div className="relative w-[70%] max-w-[900px] text-center z-10">
+            <div className="relative w-[70%] max-w-225 text-center z-10">
                 {/* MESSAGE CLAIR */}
                 <h2 
                     ref={titleRef}
@@ -196,7 +245,7 @@ export default function MessageSection() {
                 </span>
 
                 {/* OVERLAY ANIMATIONS */}
-                <div className="relative h-[280px] -translate-y-[50%] mt-12">
+                <div className="relative h-70 -translate-y-[50%] mt-12">
                     {/* B1 - Un site qui convertit */}
                     <div className="p p1 absolute inset-0 opacity-0 translate-y-6 scale-95 text-lg md:text-2xl text-gray-200 leading-relaxed">
                         <h3 className="text-cyan-400 font-extrabold mb-8">
